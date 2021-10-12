@@ -6,7 +6,6 @@ export default {
     output: {
       file: 'dist/dagre-esm.js',
       format: 'es',
-      exports: 'named',
     },
     plugins: [
       nodeResolve(),
