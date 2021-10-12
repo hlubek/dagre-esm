@@ -1,13 +1,13 @@
 {
   "name": "dagre-esm",
   "version": "1.0.0",
-  "main": "index.js",
+  "module": "dist/dagre-esm.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
     "dagre": "^0.8.5",

@@ -283,20 +283,20 @@ var Symbol = _root.Symbol;
 var _Symbol = Symbol;
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+var objectProto$i = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+var hasOwnProperty$f = objectProto$i.hasOwnProperty;
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var nativeObjectToString = objectProto.toString;
+var nativeObjectToString$1 = objectProto$i.toString;
 
 /** Built-in value references. */
-var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
  * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
@@ -306,20 +306,20 @@ var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag),
-      tag = value[symToStringTag];
+  var isOwn = hasOwnProperty$f.call(value, symToStringTag$1),
+      tag = value[symToStringTag$1];
 
   try {
-    value[symToStringTag] = undefined;
+    value[symToStringTag$1] = undefined;
     var unmasked = true;
   } catch (e) {}
 
-  var result = nativeObjectToString.call(value);
+  var result = nativeObjectToString$1.call(value);
   if (unmasked) {
     if (isOwn) {
-      value[symToStringTag] = tag;
+      value[symToStringTag$1] = tag;
     } else {
-      delete value[symToStringTag];
+      delete value[symToStringTag$1];
     }
   }
   return result;
@@ -328,14 +328,14 @@ function getRawTag(value) {
 var _getRawTag = getRawTag;
 
 /** Used for built-in method references. */
-var objectProto$1 = Object.prototype;
+var objectProto$h = Object.prototype;
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var nativeObjectToString$1 = objectProto$1.toString;
+var nativeObjectToString = objectProto$h.toString;
 
 /**
  * Converts `value` to a string using `Object.prototype.toString`.
@@ -345,7 +345,7 @@ var nativeObjectToString$1 = objectProto$1.toString;
  * @returns {string} Returns the converted string.
  */
 function objectToString(value) {
-  return nativeObjectToString$1.call(value);
+  return nativeObjectToString.call(value);
 }
 
 var _objectToString = objectToString;
@@ -355,7 +355,7 @@ var nullTag = '[object Null]',
     undefinedTag = '[object Undefined]';
 
 /** Built-in value references. */
-var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
  * The base implementation of `getTag` without fallbacks for buggy environments.
@@ -368,7 +368,7 @@ function baseGetTag(value) {
   if (value == null) {
     return value === undefined ? undefinedTag : nullTag;
   }
-  return (symToStringTag$1 && symToStringTag$1 in Object(value))
+  return (symToStringTag && symToStringTag in Object(value))
     ? _getRawTag(value)
     : _objectToString(value);
 }
@@ -409,8 +409,8 @@ var isObject_1 = isObject;
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
+    funcTag$2 = '[object Function]',
+    genTag$1 = '[object GeneratorFunction]',
     proxyTag = '[object Proxy]';
 
 /**
@@ -437,7 +437,7 @@ function isFunction(value) {
   // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 9 which returns 'object' for typed arrays and other constructors.
   var tag = _baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+  return tag == funcTag$2 || tag == genTag$1 || tag == asyncTag || tag == proxyTag;
 }
 
 var isFunction_1 = isFunction;
@@ -467,10 +467,10 @@ function isMasked(func) {
 var _isMasked = isMasked;
 
 /** Used for built-in method references. */
-var funcProto = Function.prototype;
+var funcProto$2 = Function.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
+var funcToString$2 = funcProto$2.toString;
 
 /**
  * Converts `func` to its source code.
@@ -482,7 +482,7 @@ var funcToString = funcProto.toString;
 function toSource(func) {
   if (func != null) {
     try {
-      return funcToString.call(func);
+      return funcToString$2.call(func);
     } catch (e) {}
     try {
       return (func + '');
@@ -504,17 +504,17 @@ var reIsHostCtor = /^\[object .+?Constructor\]$/;
 
 /** Used for built-in method references. */
 var funcProto$1 = Function.prototype,
-    objectProto$2 = Object.prototype;
+    objectProto$g = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$e = objectProto$g.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$1).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$e).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -608,13 +608,13 @@ function hashDelete(key) {
 var _hashDelete = hashDelete;
 
 /** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
+var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
 
 /** Used for built-in method references. */
-var objectProto$3 = Object.prototype;
+var objectProto$f = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$d = objectProto$f.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -629,18 +629,18 @@ function hashGet(key) {
   var data = this.__data__;
   if (_nativeCreate) {
     var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
+    return result === HASH_UNDEFINED$2 ? undefined : result;
   }
-  return hasOwnProperty$2.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$d.call(data, key) ? data[key] : undefined;
 }
 
 var _hashGet = hashGet;
 
 /** Used for built-in method references. */
-var objectProto$4 = Object.prototype;
+var objectProto$e = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
+var hasOwnProperty$c = objectProto$e.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -653,7 +653,7 @@ var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
  */
 function hashHas(key) {
   var data = this.__data__;
-  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$3.call(data, key);
+  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$c.call(data, key);
 }
 
 var _hashHas = hashHas;
@@ -854,7 +854,7 @@ MapCache.prototype.set = _mapCacheSet;
 var _MapCache = MapCache;
 
 /** Used as the size to enable large array optimizations. */
-var LARGE_ARRAY_SIZE = 200;
+var LARGE_ARRAY_SIZE$1 = 200;
 
 /**
  * Sets the stack `key` to `value`.
@@ -870,7 +870,7 @@ function stackSet(key, value) {
   var data = this.__data__;
   if (data instanceof _ListCache) {
     var pairs = data.__data__;
-    if (!_Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+    if (!_Map || (pairs.length < LARGE_ARRAY_SIZE$1 - 1)) {
       pairs.push([key, value]);
       this.size = ++data.size;
       return this;
@@ -963,10 +963,10 @@ function baseAssignValue(object, key, value) {
 var _baseAssignValue = baseAssignValue;
 
 /** Used for built-in method references. */
-var objectProto$5 = Object.prototype;
+var objectProto$d = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$5.hasOwnProperty;
+var hasOwnProperty$b = objectProto$d.hasOwnProperty;
 
 /**
  * Assigns `value` to `key` of `object` if the existing value is not equivalent
@@ -980,7 +980,7 @@ var hasOwnProperty$4 = objectProto$5.hasOwnProperty;
  */
 function assignValue(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$4.call(object, key) && eq_1(objValue, value)) ||
+  if (!(hasOwnProperty$b.call(object, key) && eq_1(objValue, value)) ||
       (value === undefined && !(key in object))) {
     _baseAssignValue(object, key, value);
   }
@@ -1078,7 +1078,7 @@ function isObjectLike(value) {
 var isObjectLike_1 = isObjectLike;
 
 /** `Object#toString` result references. */
-var argsTag = '[object Arguments]';
+var argsTag$3 = '[object Arguments]';
 
 /**
  * The base implementation of `_.isArguments`.
@@ -1088,19 +1088,19 @@ var argsTag = '[object Arguments]';
  * @returns {boolean} Returns `true` if `value` is an `arguments` object,
  */
 function baseIsArguments(value) {
-  return isObjectLike_1(value) && _baseGetTag(value) == argsTag;
+  return isObjectLike_1(value) && _baseGetTag(value) == argsTag$3;
 }
 
 var _baseIsArguments = baseIsArguments;
 
 /** Used for built-in method references. */
-var objectProto$6 = Object.prototype;
+var objectProto$c = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$6.hasOwnProperty;
+var hasOwnProperty$a = objectProto$c.hasOwnProperty;
 
 /** Built-in value references. */
-var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
+var propertyIsEnumerable$1 = objectProto$c.propertyIsEnumerable;
 
 /**
  * Checks if `value` is likely an `arguments` object.
@@ -1121,8 +1121,8 @@ var propertyIsEnumerable = objectProto$6.propertyIsEnumerable;
  * // => false
  */
 var isArguments = _baseIsArguments(function() { return arguments; }()) ? _baseIsArguments : function(value) {
-  return isObjectLike_1(value) && hasOwnProperty$5.call(value, 'callee') &&
-    !propertyIsEnumerable.call(value, 'callee');
+  return isObjectLike_1(value) && hasOwnProperty$a.call(value, 'callee') &&
+    !propertyIsEnumerable$1.call(value, 'callee');
 };
 
 var isArguments_1 = isArguments;
@@ -1175,7 +1175,7 @@ var stubFalse_1 = stubFalse;
 
 var isBuffer_1 = createCommonjsModule(function (module, exports) {
 /** Detect free variable `exports`. */
-var freeExports =  exports && !exports.nodeType && exports;
+var freeExports = exports && !exports.nodeType && exports;
 
 /** Detect free variable `module`. */
 var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
@@ -1212,7 +1212,7 @@ module.exports = isBuffer;
 });
 
 /** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
+var MAX_SAFE_INTEGER$1 = 9007199254740991;
 
 /** Used to detect unsigned integer values. */
 var reIsUint = /^(?:0|[1-9]\d*)$/;
@@ -1227,7 +1227,7 @@ var reIsUint = /^(?:0|[1-9]\d*)$/;
  */
 function isIndex(value, length) {
   var type = typeof value;
-  length = length == null ? MAX_SAFE_INTEGER : length;
+  length = length == null ? MAX_SAFE_INTEGER$1 : length;
 
   return !!length &&
     (type == 'number' ||
@@ -1238,7 +1238,7 @@ function isIndex(value, length) {
 var _isIndex = isIndex;
 
 /** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER$1 = 9007199254740991;
+var MAX_SAFE_INTEGER = 9007199254740991;
 
 /**
  * Checks if `value` is a valid array-like length.
@@ -1268,53 +1268,53 @@ var MAX_SAFE_INTEGER$1 = 9007199254740991;
  */
 function isLength(value) {
   return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER$1;
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
 }
 
 var isLength_1 = isLength;
 
 /** `Object#toString` result references. */
-var argsTag$1 = '[object Arguments]',
-    arrayTag = '[object Array]',
-    boolTag = '[object Boolean]',
-    dateTag = '[object Date]',
-    errorTag = '[object Error]',
+var argsTag$2 = '[object Arguments]',
+    arrayTag$2 = '[object Array]',
+    boolTag$3 = '[object Boolean]',
+    dateTag$3 = '[object Date]',
+    errorTag$2 = '[object Error]',
     funcTag$1 = '[object Function]',
-    mapTag = '[object Map]',
-    numberTag = '[object Number]',
-    objectTag = '[object Object]',
-    regexpTag = '[object RegExp]',
-    setTag = '[object Set]',
-    stringTag = '[object String]',
-    weakMapTag = '[object WeakMap]';
+    mapTag$7 = '[object Map]',
+    numberTag$3 = '[object Number]',
+    objectTag$4 = '[object Object]',
+    regexpTag$3 = '[object RegExp]',
+    setTag$7 = '[object Set]',
+    stringTag$4 = '[object String]',
+    weakMapTag$2 = '[object WeakMap]';
 
-var arrayBufferTag = '[object ArrayBuffer]',
-    dataViewTag = '[object DataView]',
-    float32Tag = '[object Float32Array]',
-    float64Tag = '[object Float64Array]',
-    int8Tag = '[object Int8Array]',
-    int16Tag = '[object Int16Array]',
-    int32Tag = '[object Int32Array]',
-    uint8Tag = '[object Uint8Array]',
-    uint8ClampedTag = '[object Uint8ClampedArray]',
-    uint16Tag = '[object Uint16Array]',
-    uint32Tag = '[object Uint32Array]';
+var arrayBufferTag$3 = '[object ArrayBuffer]',
+    dataViewTag$4 = '[object DataView]',
+    float32Tag$2 = '[object Float32Array]',
+    float64Tag$2 = '[object Float64Array]',
+    int8Tag$2 = '[object Int8Array]',
+    int16Tag$2 = '[object Int16Array]',
+    int32Tag$2 = '[object Int32Array]',
+    uint8Tag$2 = '[object Uint8Array]',
+    uint8ClampedTag$2 = '[object Uint8ClampedArray]',
+    uint16Tag$2 = '[object Uint16Array]',
+    uint32Tag$2 = '[object Uint32Array]';
 
 /** Used to identify `toStringTag` values of typed arrays. */
 var typedArrayTags = {};
-typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
-typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
-typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
-typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
-typedArrayTags[uint32Tag] = true;
-typedArrayTags[argsTag$1] = typedArrayTags[arrayTag] =
-typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
-typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
-typedArrayTags[errorTag] = typedArrayTags[funcTag$1] =
-typedArrayTags[mapTag] = typedArrayTags[numberTag] =
-typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
-typedArrayTags[setTag] = typedArrayTags[stringTag] =
-typedArrayTags[weakMapTag] = false;
+typedArrayTags[float32Tag$2] = typedArrayTags[float64Tag$2] =
+typedArrayTags[int8Tag$2] = typedArrayTags[int16Tag$2] =
+typedArrayTags[int32Tag$2] = typedArrayTags[uint8Tag$2] =
+typedArrayTags[uint8ClampedTag$2] = typedArrayTags[uint16Tag$2] =
+typedArrayTags[uint32Tag$2] = true;
+typedArrayTags[argsTag$2] = typedArrayTags[arrayTag$2] =
+typedArrayTags[arrayBufferTag$3] = typedArrayTags[boolTag$3] =
+typedArrayTags[dataViewTag$4] = typedArrayTags[dateTag$3] =
+typedArrayTags[errorTag$2] = typedArrayTags[funcTag$1] =
+typedArrayTags[mapTag$7] = typedArrayTags[numberTag$3] =
+typedArrayTags[objectTag$4] = typedArrayTags[regexpTag$3] =
+typedArrayTags[setTag$7] = typedArrayTags[stringTag$4] =
+typedArrayTags[weakMapTag$2] = false;
 
 /**
  * The base implementation of `_.isTypedArray` without Node.js optimizations.
@@ -1347,7 +1347,7 @@ var _baseUnary = baseUnary;
 
 var _nodeUtil = createCommonjsModule(function (module, exports) {
 /** Detect free variable `exports`. */
-var freeExports =  exports && !exports.nodeType && exports;
+var freeExports = exports && !exports.nodeType && exports;
 
 /** Detect free variable `module`. */
 var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
@@ -1401,10 +1401,10 @@ var isTypedArray = nodeIsTypedArray ? _baseUnary(nodeIsTypedArray) : _baseIsType
 var isTypedArray_1 = isTypedArray;
 
 /** Used for built-in method references. */
-var objectProto$7 = Object.prototype;
+var objectProto$b = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$6 = objectProto$7.hasOwnProperty;
+var hasOwnProperty$9 = objectProto$b.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -1424,7 +1424,7 @@ function arrayLikeKeys(value, inherited) {
       length = result.length;
 
   for (var key in value) {
-    if ((inherited || hasOwnProperty$6.call(value, key)) &&
+    if ((inherited || hasOwnProperty$9.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.
            key == 'length' ||
@@ -1444,7 +1444,7 @@ function arrayLikeKeys(value, inherited) {
 var _arrayLikeKeys = arrayLikeKeys;
 
 /** Used for built-in method references. */
-var objectProto$8 = Object.prototype;
+var objectProto$a = Object.prototype;
 
 /**
  * Checks if `value` is likely a prototype object.
@@ -1455,7 +1455,7 @@ var objectProto$8 = Object.prototype;
  */
 function isPrototype(value) {
   var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$8;
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$a;
 
   return value === proto;
 }
@@ -1487,7 +1487,7 @@ var _nativeKeys = nativeKeys;
 var objectProto$9 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$7 = objectProto$9.hasOwnProperty;
+var hasOwnProperty$8 = objectProto$9.hasOwnProperty;
 
 /**
  * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
@@ -1502,7 +1502,7 @@ function baseKeys(object) {
   }
   var result = [];
   for (var key in Object(object)) {
-    if (hasOwnProperty$7.call(object, key) && key != 'constructor') {
+    if (hasOwnProperty$8.call(object, key) && key != 'constructor') {
       result.push(key);
     }
   }
@@ -1613,10 +1613,10 @@ function nativeKeysIn(object) {
 var _nativeKeysIn = nativeKeysIn;
 
 /** Used for built-in method references. */
-var objectProto$a = Object.prototype;
+var objectProto$8 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$8 = objectProto$a.hasOwnProperty;
+var hasOwnProperty$7 = objectProto$8.hasOwnProperty;
 
 /**
  * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
@@ -1633,7 +1633,7 @@ function baseKeysIn(object) {
       result = [];
 
   for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$8.call(object, key)))) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$7.call(object, key)))) {
       result.push(key);
     }
   }
@@ -1688,7 +1688,7 @@ var _baseAssignIn = baseAssignIn;
 
 var _cloneBuffer = createCommonjsModule(function (module, exports) {
 /** Detect free variable `exports`. */
-var freeExports =  exports && !exports.nodeType && exports;
+var freeExports = exports && !exports.nodeType && exports;
 
 /** Detect free variable `module`. */
 var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
@@ -1794,13 +1794,13 @@ function stubArray() {
 var stubArray_1 = stubArray;
 
 /** Used for built-in method references. */
-var objectProto$b = Object.prototype;
+var objectProto$7 = Object.prototype;
 
 /** Built-in value references. */
-var propertyIsEnumerable$1 = objectProto$b.propertyIsEnumerable;
+var propertyIsEnumerable = objectProto$7.propertyIsEnumerable;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetSymbols = Object.getOwnPropertySymbols;
+var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
 
 /**
  * Creates an array of the own enumerable symbols of `object`.
@@ -1809,13 +1809,13 @@ var nativeGetSymbols = Object.getOwnPropertySymbols;
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of symbols.
  */
-var getSymbols = !nativeGetSymbols ? stubArray_1 : function(object) {
+var getSymbols = !nativeGetSymbols$1 ? stubArray_1 : function(object) {
   if (object == null) {
     return [];
   }
   object = Object(object);
-  return _arrayFilter(nativeGetSymbols(object), function(symbol) {
-    return propertyIsEnumerable$1.call(object, symbol);
+  return _arrayFilter(nativeGetSymbols$1(object), function(symbol) {
+    return propertyIsEnumerable.call(object, symbol);
   });
 };
 
@@ -1862,7 +1862,7 @@ var getPrototype = _overArg(Object.getPrototypeOf, Object);
 var _getPrototype = getPrototype;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
+var nativeGetSymbols = Object.getOwnPropertySymbols;
 
 /**
  * Creates an array of the own and inherited enumerable symbols of `object`.
@@ -1871,7 +1871,7 @@ var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of symbols.
  */
-var getSymbolsIn = !nativeGetSymbols$1 ? stubArray_1 : function(object) {
+var getSymbolsIn = !nativeGetSymbols ? stubArray_1 : function(object) {
   var result = [];
   while (object) {
     _arrayPush(result, _getSymbols(object));
@@ -1947,9 +1947,9 @@ var DataView = _getNative(_root, 'DataView');
 var _DataView = DataView;
 
 /* Built-in method references that are verified to be native. */
-var Promise = _getNative(_root, 'Promise');
+var Promise$1 = _getNative(_root, 'Promise');
 
-var _Promise = Promise;
+var _Promise = Promise$1;
 
 /* Built-in method references that are verified to be native. */
 var Set = _getNative(_root, 'Set');
@@ -1962,13 +1962,13 @@ var WeakMap = _getNative(_root, 'WeakMap');
 var _WeakMap = WeakMap;
 
 /** `Object#toString` result references. */
-var mapTag$1 = '[object Map]',
-    objectTag$1 = '[object Object]',
+var mapTag$6 = '[object Map]',
+    objectTag$3 = '[object Object]',
     promiseTag = '[object Promise]',
-    setTag$1 = '[object Set]',
+    setTag$6 = '[object Set]',
     weakMapTag$1 = '[object WeakMap]';
 
-var dataViewTag$1 = '[object DataView]';
+var dataViewTag$3 = '[object DataView]';
 
 /** Used to detect maps, sets, and weakmaps. */
 var dataViewCtorString = _toSource(_DataView),
@@ -1987,22 +1987,22 @@ var dataViewCtorString = _toSource(_DataView),
 var getTag = _baseGetTag;
 
 // Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
-if ((_DataView && getTag(new _DataView(new ArrayBuffer(1))) != dataViewTag$1) ||
-    (_Map && getTag(new _Map) != mapTag$1) ||
+if ((_DataView && getTag(new _DataView(new ArrayBuffer(1))) != dataViewTag$3) ||
+    (_Map && getTag(new _Map) != mapTag$6) ||
     (_Promise && getTag(_Promise.resolve()) != promiseTag) ||
-    (_Set && getTag(new _Set) != setTag$1) ||
+    (_Set && getTag(new _Set) != setTag$6) ||
     (_WeakMap && getTag(new _WeakMap) != weakMapTag$1)) {
   getTag = function(value) {
     var result = _baseGetTag(value),
-        Ctor = result == objectTag$1 ? value.constructor : undefined,
+        Ctor = result == objectTag$3 ? value.constructor : undefined,
         ctorString = Ctor ? _toSource(Ctor) : '';
 
     if (ctorString) {
       switch (ctorString) {
-        case dataViewCtorString: return dataViewTag$1;
-        case mapCtorString: return mapTag$1;
+        case dataViewCtorString: return dataViewTag$3;
+        case mapCtorString: return mapTag$6;
         case promiseCtorString: return promiseTag;
-        case setCtorString: return setTag$1;
+        case setCtorString: return setTag$6;
         case weakMapCtorString: return weakMapTag$1;
       }
     }
@@ -2013,10 +2013,10 @@ if ((_DataView && getTag(new _DataView(new ArrayBuffer(1))) != dataViewTag$1) ||
 var _getTag = getTag;
 
 /** Used for built-in method references. */
-var objectProto$c = Object.prototype;
+var objectProto$6 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$9 = objectProto$c.hasOwnProperty;
+var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -2030,7 +2030,7 @@ function initCloneArray(array) {
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
-  if (length && typeof array[0] == 'string' && hasOwnProperty$9.call(array, 'index')) {
+  if (length && typeof array[0] == 'string' && hasOwnProperty$6.call(array, 'index')) {
     result.index = array.index;
     result.input = array.input;
   }
@@ -2093,8 +2093,8 @@ function cloneRegExp(regexp) {
 var _cloneRegExp = cloneRegExp;
 
 /** Used to convert symbols to primitives and strings. */
-var symbolProto = _Symbol ? _Symbol.prototype : undefined,
-    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+var symbolProto$2 = _Symbol ? _Symbol.prototype : undefined,
+    symbolValueOf$1 = symbolProto$2 ? symbolProto$2.valueOf : undefined;
 
 /**
  * Creates a clone of the `symbol` object.
@@ -2104,7 +2104,7 @@ var symbolProto = _Symbol ? _Symbol.prototype : undefined,
  * @returns {Object} Returns the cloned symbol object.
  */
 function cloneSymbol(symbol) {
-  return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+  return symbolValueOf$1 ? Object(symbolValueOf$1.call(symbol)) : {};
 }
 
 var _cloneSymbol = cloneSymbol;
@@ -2125,16 +2125,16 @@ function cloneTypedArray(typedArray, isDeep) {
 var _cloneTypedArray = cloneTypedArray;
 
 /** `Object#toString` result references. */
-var boolTag$1 = '[object Boolean]',
-    dateTag$1 = '[object Date]',
-    mapTag$2 = '[object Map]',
-    numberTag$1 = '[object Number]',
-    regexpTag$1 = '[object RegExp]',
-    setTag$2 = '[object Set]',
-    stringTag$1 = '[object String]',
-    symbolTag = '[object Symbol]';
+var boolTag$2 = '[object Boolean]',
+    dateTag$2 = '[object Date]',
+    mapTag$5 = '[object Map]',
+    numberTag$2 = '[object Number]',
+    regexpTag$2 = '[object RegExp]',
+    setTag$5 = '[object Set]',
+    stringTag$3 = '[object String]',
+    symbolTag$3 = '[object Symbol]';
 
-var arrayBufferTag$1 = '[object ArrayBuffer]',
+var arrayBufferTag$2 = '[object ArrayBuffer]',
     dataViewTag$2 = '[object DataView]',
     float32Tag$1 = '[object Float32Array]',
     float64Tag$1 = '[object Float64Array]',
@@ -2161,11 +2161,11 @@ var arrayBufferTag$1 = '[object ArrayBuffer]',
 function initCloneByTag(object, tag, isDeep) {
   var Ctor = object.constructor;
   switch (tag) {
-    case arrayBufferTag$1:
+    case arrayBufferTag$2:
       return _cloneArrayBuffer(object);
 
-    case boolTag$1:
-    case dateTag$1:
+    case boolTag$2:
+    case dateTag$2:
       return new Ctor(+object);
 
     case dataViewTag$2:
@@ -2176,20 +2176,20 @@ function initCloneByTag(object, tag, isDeep) {
     case uint8Tag$1: case uint8ClampedTag$1: case uint16Tag$1: case uint32Tag$1:
       return _cloneTypedArray(object, isDeep);
 
-    case mapTag$2:
+    case mapTag$5:
       return new Ctor;
 
-    case numberTag$1:
-    case stringTag$1:
+    case numberTag$2:
+    case stringTag$3:
       return new Ctor(object);
 
-    case regexpTag$1:
+    case regexpTag$2:
       return _cloneRegExp(object);
 
-    case setTag$2:
+    case setTag$5:
       return new Ctor;
 
-    case symbolTag:
+    case symbolTag$3:
       return _cloneSymbol(object);
   }
 }
@@ -2241,7 +2241,7 @@ function initCloneObject(object) {
 var _initCloneObject = initCloneObject;
 
 /** `Object#toString` result references. */
-var mapTag$3 = '[object Map]';
+var mapTag$4 = '[object Map]';
 
 /**
  * The base implementation of `_.isMap` without Node.js optimizations.
@@ -2251,7 +2251,7 @@ var mapTag$3 = '[object Map]';
  * @returns {boolean} Returns `true` if `value` is a map, else `false`.
  */
 function baseIsMap(value) {
-  return isObjectLike_1(value) && _getTag(value) == mapTag$3;
+  return isObjectLike_1(value) && _getTag(value) == mapTag$4;
 }
 
 var _baseIsMap = baseIsMap;
@@ -2281,7 +2281,7 @@ var isMap = nodeIsMap ? _baseUnary(nodeIsMap) : _baseIsMap;
 var isMap_1 = isMap;
 
 /** `Object#toString` result references. */
-var setTag$3 = '[object Set]';
+var setTag$4 = '[object Set]';
 
 /**
  * The base implementation of `_.isSet` without Node.js optimizations.
@@ -2291,7 +2291,7 @@ var setTag$3 = '[object Set]';
  * @returns {boolean} Returns `true` if `value` is a set, else `false`.
  */
 function baseIsSet(value) {
-  return isObjectLike_1(value) && _getTag(value) == setTag$3;
+  return isObjectLike_1(value) && _getTag(value) == setTag$4;
 }
 
 var _baseIsSet = baseIsSet;
@@ -2321,54 +2321,54 @@ var isSet = nodeIsSet ? _baseUnary(nodeIsSet) : _baseIsSet;
 var isSet_1 = isSet;
 
 /** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG = 1,
+var CLONE_DEEP_FLAG$1 = 1,
     CLONE_FLAT_FLAG = 2,
-    CLONE_SYMBOLS_FLAG = 4;
+    CLONE_SYMBOLS_FLAG$2 = 4;
 
 /** `Object#toString` result references. */
-var argsTag$2 = '[object Arguments]',
+var argsTag$1 = '[object Arguments]',
     arrayTag$1 = '[object Array]',
-    boolTag$2 = '[object Boolean]',
-    dateTag$2 = '[object Date]',
+    boolTag$1 = '[object Boolean]',
+    dateTag$1 = '[object Date]',
     errorTag$1 = '[object Error]',
-    funcTag$2 = '[object Function]',
-    genTag$1 = '[object GeneratorFunction]',
-    mapTag$4 = '[object Map]',
-    numberTag$2 = '[object Number]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag$3 = '[object Map]',
+    numberTag$1 = '[object Number]',
     objectTag$2 = '[object Object]',
-    regexpTag$2 = '[object RegExp]',
-    setTag$4 = '[object Set]',
+    regexpTag$1 = '[object RegExp]',
+    setTag$3 = '[object Set]',
     stringTag$2 = '[object String]',
-    symbolTag$1 = '[object Symbol]',
-    weakMapTag$2 = '[object WeakMap]';
+    symbolTag$2 = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
 
-var arrayBufferTag$2 = '[object ArrayBuffer]',
-    dataViewTag$3 = '[object DataView]',
-    float32Tag$2 = '[object Float32Array]',
-    float64Tag$2 = '[object Float64Array]',
-    int8Tag$2 = '[object Int8Array]',
-    int16Tag$2 = '[object Int16Array]',
-    int32Tag$2 = '[object Int32Array]',
-    uint8Tag$2 = '[object Uint8Array]',
-    uint8ClampedTag$2 = '[object Uint8ClampedArray]',
-    uint16Tag$2 = '[object Uint16Array]',
-    uint32Tag$2 = '[object Uint32Array]';
+var arrayBufferTag$1 = '[object ArrayBuffer]',
+    dataViewTag$1 = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
 
 /** Used to identify `toStringTag` values supported by `_.clone`. */
 var cloneableTags = {};
-cloneableTags[argsTag$2] = cloneableTags[arrayTag$1] =
-cloneableTags[arrayBufferTag$2] = cloneableTags[dataViewTag$3] =
-cloneableTags[boolTag$2] = cloneableTags[dateTag$2] =
-cloneableTags[float32Tag$2] = cloneableTags[float64Tag$2] =
-cloneableTags[int8Tag$2] = cloneableTags[int16Tag$2] =
-cloneableTags[int32Tag$2] = cloneableTags[mapTag$4] =
-cloneableTags[numberTag$2] = cloneableTags[objectTag$2] =
-cloneableTags[regexpTag$2] = cloneableTags[setTag$4] =
-cloneableTags[stringTag$2] = cloneableTags[symbolTag$1] =
-cloneableTags[uint8Tag$2] = cloneableTags[uint8ClampedTag$2] =
-cloneableTags[uint16Tag$2] = cloneableTags[uint32Tag$2] = true;
-cloneableTags[errorTag$1] = cloneableTags[funcTag$2] =
-cloneableTags[weakMapTag$2] = false;
+cloneableTags[argsTag$1] = cloneableTags[arrayTag$1] =
+cloneableTags[arrayBufferTag$1] = cloneableTags[dataViewTag$1] =
+cloneableTags[boolTag$1] = cloneableTags[dateTag$1] =
+cloneableTags[float32Tag] = cloneableTags[float64Tag] =
+cloneableTags[int8Tag] = cloneableTags[int16Tag] =
+cloneableTags[int32Tag] = cloneableTags[mapTag$3] =
+cloneableTags[numberTag$1] = cloneableTags[objectTag$2] =
+cloneableTags[regexpTag$1] = cloneableTags[setTag$3] =
+cloneableTags[stringTag$2] = cloneableTags[symbolTag$2] =
+cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+cloneableTags[errorTag$1] = cloneableTags[funcTag] =
+cloneableTags[weakMapTag] = false;
 
 /**
  * The base implementation of `_.clone` and `_.cloneDeep` which tracks
@@ -2388,9 +2388,9 @@ cloneableTags[weakMapTag$2] = false;
  */
 function baseClone(value, bitmask, customizer, key, object, stack) {
   var result,
-      isDeep = bitmask & CLONE_DEEP_FLAG,
+      isDeep = bitmask & CLONE_DEEP_FLAG$1,
       isFlat = bitmask & CLONE_FLAT_FLAG,
-      isFull = bitmask & CLONE_SYMBOLS_FLAG;
+      isFull = bitmask & CLONE_SYMBOLS_FLAG$2;
 
   if (customizer) {
     result = object ? customizer(value, key, object, stack) : customizer(value);
@@ -2409,12 +2409,12 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
     }
   } else {
     var tag = _getTag(value),
-        isFunc = tag == funcTag$2 || tag == genTag$1;
+        isFunc = tag == funcTag || tag == genTag;
 
     if (isBuffer_1(value)) {
       return _cloneBuffer(value, isDeep);
     }
-    if (tag == objectTag$2 || tag == argsTag$2 || (isFunc && !object)) {
+    if (tag == objectTag$2 || tag == argsTag$1 || (isFunc && !object)) {
       result = (isFlat || isFunc) ? {} : _initCloneObject(value);
       if (!isDeep) {
         return isFlat
@@ -2719,7 +2719,7 @@ function baseFilter(collection, predicate) {
 var _baseFilter = baseFilter;
 
 /** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
 
 /**
  * Adds `value` to the array cache.
@@ -2732,7 +2732,7 @@ var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
  * @returns {Object} Returns the cache instance.
  */
 function setCacheAdd(value) {
-  this.__data__.set(value, HASH_UNDEFINED$2);
+  this.__data__.set(value, HASH_UNDEFINED);
   return this;
 }
 
@@ -2816,8 +2816,8 @@ function cacheHas(cache, key) {
 var _cacheHas = cacheHas;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG = 1,
-    COMPARE_UNORDERED_FLAG = 2;
+var COMPARE_PARTIAL_FLAG$5 = 1,
+    COMPARE_UNORDERED_FLAG$3 = 2;
 
 /**
  * A specialized version of `baseIsEqualDeep` for arrays with support for
@@ -2833,7 +2833,7 @@ var COMPARE_PARTIAL_FLAG = 1,
  * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
  */
 function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$5,
       arrLength = array.length,
       othLength = other.length;
 
@@ -2848,7 +2848,7 @@ function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
   }
   var index = -1,
       result = true,
-      seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new _SetCache : undefined;
+      seen = (bitmask & COMPARE_UNORDERED_FLAG$3) ? new _SetCache : undefined;
 
   stack.set(array, other);
   stack.set(other, array);
@@ -2935,26 +2935,26 @@ function setToArray(set) {
 var _setToArray = setToArray;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG$1 = 1,
-    COMPARE_UNORDERED_FLAG$1 = 2;
+var COMPARE_PARTIAL_FLAG$4 = 1,
+    COMPARE_UNORDERED_FLAG$2 = 2;
 
 /** `Object#toString` result references. */
-var boolTag$3 = '[object Boolean]',
-    dateTag$3 = '[object Date]',
-    errorTag$2 = '[object Error]',
-    mapTag$5 = '[object Map]',
-    numberTag$3 = '[object Number]',
-    regexpTag$3 = '[object RegExp]',
-    setTag$5 = '[object Set]',
-    stringTag$3 = '[object String]',
-    symbolTag$2 = '[object Symbol]';
+var boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    mapTag$2 = '[object Map]',
+    numberTag = '[object Number]',
+    regexpTag = '[object RegExp]',
+    setTag$2 = '[object Set]',
+    stringTag$1 = '[object String]',
+    symbolTag$1 = '[object Symbol]';
 
-var arrayBufferTag$3 = '[object ArrayBuffer]',
-    dataViewTag$4 = '[object DataView]';
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]';
 
 /** Used to convert symbols to primitives and strings. */
 var symbolProto$1 = _Symbol ? _Symbol.prototype : undefined,
-    symbolValueOf$1 = symbolProto$1 ? symbolProto$1.valueOf : undefined;
+    symbolValueOf = symbolProto$1 ? symbolProto$1.valueOf : undefined;
 
 /**
  * A specialized version of `baseIsEqualDeep` for comparing objects of
@@ -2975,7 +2975,7 @@ var symbolProto$1 = _Symbol ? _Symbol.prototype : undefined,
  */
 function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
   switch (tag) {
-    case dataViewTag$4:
+    case dataViewTag:
       if ((object.byteLength != other.byteLength) ||
           (object.byteOffset != other.byteOffset)) {
         return false;
@@ -2983,35 +2983,35 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
       object = object.buffer;
       other = other.buffer;
 
-    case arrayBufferTag$3:
+    case arrayBufferTag:
       if ((object.byteLength != other.byteLength) ||
           !equalFunc(new _Uint8Array(object), new _Uint8Array(other))) {
         return false;
       }
       return true;
 
-    case boolTag$3:
-    case dateTag$3:
-    case numberTag$3:
+    case boolTag:
+    case dateTag:
+    case numberTag:
       // Coerce booleans to `1` or `0` and dates to milliseconds.
       // Invalid dates are coerced to `NaN`.
       return eq_1(+object, +other);
 
-    case errorTag$2:
+    case errorTag:
       return object.name == other.name && object.message == other.message;
 
-    case regexpTag$3:
-    case stringTag$3:
+    case regexpTag:
+    case stringTag$1:
       // Coerce regexes to strings and treat strings, primitives and objects,
       // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
       // for more details.
       return object == (other + '');
 
-    case mapTag$5:
+    case mapTag$2:
       var convert = _mapToArray;
 
-    case setTag$5:
-      var isPartial = bitmask & COMPARE_PARTIAL_FLAG$1;
+    case setTag$2:
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG$4;
       convert || (convert = _setToArray);
 
       if (object.size != other.size && !isPartial) {
@@ -3022,7 +3022,7 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
       if (stacked) {
         return stacked == other;
       }
-      bitmask |= COMPARE_UNORDERED_FLAG$1;
+      bitmask |= COMPARE_UNORDERED_FLAG$2;
 
       // Recursively compare objects (susceptible to call stack limits).
       stack.set(object, other);
@@ -3030,9 +3030,9 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
       stack['delete'](object);
       return result;
 
-    case symbolTag$2:
-      if (symbolValueOf$1) {
-        return symbolValueOf$1.call(object) == symbolValueOf$1.call(other);
+    case symbolTag$1:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
       }
   }
   return false;
@@ -3041,13 +3041,13 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
 var _equalByTag = equalByTag;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG$2 = 1;
+var COMPARE_PARTIAL_FLAG$3 = 1;
 
 /** Used for built-in method references. */
-var objectProto$d = Object.prototype;
+var objectProto$5 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$a = objectProto$d.hasOwnProperty;
+var hasOwnProperty$5 = objectProto$5.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqualDeep` for objects with support for
@@ -3063,7 +3063,7 @@ var hasOwnProperty$a = objectProto$d.hasOwnProperty;
  * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
  */
 function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$2,
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$3,
       objProps = _getAllKeys(object),
       objLength = objProps.length,
       othProps = _getAllKeys(other),
@@ -3075,7 +3075,7 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
   var index = objLength;
   while (index--) {
     var key = objProps[index];
-    if (!(isPartial ? key in other : hasOwnProperty$a.call(other, key))) {
+    if (!(isPartial ? key in other : hasOwnProperty$5.call(other, key))) {
       return false;
     }
   }
@@ -3130,18 +3130,18 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
 var _equalObjects = equalObjects;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG$3 = 1;
+var COMPARE_PARTIAL_FLAG$2 = 1;
 
 /** `Object#toString` result references. */
-var argsTag$3 = '[object Arguments]',
-    arrayTag$2 = '[object Array]',
-    objectTag$3 = '[object Object]';
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    objectTag$1 = '[object Object]';
 
 /** Used for built-in method references. */
-var objectProto$e = Object.prototype;
+var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$b = objectProto$e.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqual` for arrays and objects which performs
@@ -3160,14 +3160,14 @@ var hasOwnProperty$b = objectProto$e.hasOwnProperty;
 function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
   var objIsArr = isArray_1(object),
       othIsArr = isArray_1(other),
-      objTag = objIsArr ? arrayTag$2 : _getTag(object),
-      othTag = othIsArr ? arrayTag$2 : _getTag(other);
+      objTag = objIsArr ? arrayTag : _getTag(object),
+      othTag = othIsArr ? arrayTag : _getTag(other);
 
-  objTag = objTag == argsTag$3 ? objectTag$3 : objTag;
-  othTag = othTag == argsTag$3 ? objectTag$3 : othTag;
+  objTag = objTag == argsTag ? objectTag$1 : objTag;
+  othTag = othTag == argsTag ? objectTag$1 : othTag;
 
-  var objIsObj = objTag == objectTag$3,
-      othIsObj = othTag == objectTag$3,
+  var objIsObj = objTag == objectTag$1,
+      othIsObj = othTag == objectTag$1,
       isSameTag = objTag == othTag;
 
   if (isSameTag && isBuffer_1(object)) {
@@ -3183,9 +3183,9 @@ function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
       ? _equalArrays(object, other, bitmask, customizer, equalFunc, stack)
       : _equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
   }
-  if (!(bitmask & COMPARE_PARTIAL_FLAG$3)) {
-    var objIsWrapped = objIsObj && hasOwnProperty$b.call(object, '__wrapped__'),
-        othIsWrapped = othIsObj && hasOwnProperty$b.call(other, '__wrapped__');
+  if (!(bitmask & COMPARE_PARTIAL_FLAG$2)) {
+    var objIsWrapped = objIsObj && hasOwnProperty$4.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty$4.call(other, '__wrapped__');
 
     if (objIsWrapped || othIsWrapped) {
       var objUnwrapped = objIsWrapped ? object.value() : object,
@@ -3231,8 +3231,8 @@ function baseIsEqual(value, other, bitmask, customizer, stack) {
 var _baseIsEqual = baseIsEqual;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG$4 = 1,
-    COMPARE_UNORDERED_FLAG$2 = 2;
+var COMPARE_PARTIAL_FLAG$1 = 1,
+    COMPARE_UNORDERED_FLAG$1 = 2;
 
 /**
  * The base implementation of `_.isMatch` without support for iteratee shorthands.
@@ -3278,7 +3278,7 @@ function baseIsMatch(object, source, matchData, customizer) {
         var result = customizer(objValue, srcValue, key, object, source, stack);
       }
       if (!(result === undefined
-            ? _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG$4 | COMPARE_UNORDERED_FLAG$2, customizer, stack)
+            ? _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG$1 | COMPARE_UNORDERED_FLAG$1, customizer, stack)
             : result
           )) {
         return false;
@@ -3367,7 +3367,7 @@ function baseMatches(source) {
 var _baseMatches = baseMatches;
 
 /** `Object#toString` result references. */
-var symbolTag$3 = '[object Symbol]';
+var symbolTag = '[object Symbol]';
 
 /**
  * Checks if `value` is classified as a `Symbol` primitive or object.
@@ -3388,7 +3388,7 @@ var symbolTag$3 = '[object Symbol]';
  */
 function isSymbol(value) {
   return typeof value == 'symbol' ||
-    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag$3);
+    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
 }
 
 var isSymbol_1 = isSymbol;
@@ -3566,11 +3566,11 @@ function arrayMap(array, iteratee) {
 var _arrayMap = arrayMap;
 
 /** Used as references for various `Number` constants. */
-var INFINITY = 1 / 0;
+var INFINITY$3 = 1 / 0;
 
 /** Used to convert symbols to primitives and strings. */
-var symbolProto$2 = _Symbol ? _Symbol.prototype : undefined,
-    symbolToString = symbolProto$2 ? symbolProto$2.toString : undefined;
+var symbolProto = _Symbol ? _Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
 
 /**
  * The base implementation of `_.toString` which doesn't convert nullish
@@ -3593,7 +3593,7 @@ function baseToString(value) {
     return symbolToString ? symbolToString.call(value) : '';
   }
   var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+  return (result == '0' && (1 / value) == -INFINITY$3) ? '-0' : result;
 }
 
 var _baseToString = baseToString;
@@ -3643,7 +3643,7 @@ function castPath(value, object) {
 var _castPath = castPath;
 
 /** Used as references for various `Number` constants. */
-var INFINITY$1 = 1 / 0;
+var INFINITY$2 = 1 / 0;
 
 /**
  * Converts `value` to a string key if it's not a string or symbol.
@@ -3657,7 +3657,7 @@ function toKey(value) {
     return value;
   }
   var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY$1) ? '-0' : result;
+  return (result == '0' && (1 / value) == -INFINITY$2) ? '-0' : result;
 }
 
 var _toKey = toKey;
@@ -3796,8 +3796,8 @@ function hasIn(object, path) {
 var hasIn_1 = hasIn;
 
 /** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG$5 = 1,
-    COMPARE_UNORDERED_FLAG$3 = 2;
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
 
 /**
  * The base implementation of `_.matchesProperty` which doesn't clone `srcValue`.
@@ -3815,7 +3815,7 @@ function baseMatchesProperty(path, srcValue) {
     var objValue = get_1(object, path);
     return (objValue === undefined && objValue === srcValue)
       ? hasIn_1(object, path)
-      : _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG$5 | COMPARE_UNORDERED_FLAG$3);
+      : _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
   };
 }
 
@@ -3954,10 +3954,10 @@ function filter(collection, predicate) {
 var filter_1 = filter;
 
 /** Used for built-in method references. */
-var objectProto$f = Object.prototype;
+var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$c = objectProto$f.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
 
 /**
  * The base implementation of `_.has` without support for deep paths.
@@ -3968,7 +3968,7 @@ var hasOwnProperty$c = objectProto$f.hasOwnProperty;
  * @returns {boolean} Returns `true` if `key` exists, else `false`.
  */
 function baseHas(object, key) {
-  return object != null && hasOwnProperty$c.call(object, key);
+  return object != null && hasOwnProperty$3.call(object, key);
 }
 
 var _baseHas = baseHas;
@@ -4007,14 +4007,14 @@ function has(object, path) {
 var has_1 = has;
 
 /** `Object#toString` result references. */
-var mapTag$6 = '[object Map]',
-    setTag$6 = '[object Set]';
+var mapTag$1 = '[object Map]',
+    setTag$1 = '[object Set]';
 
 /** Used for built-in method references. */
-var objectProto$g = Object.prototype;
+var objectProto$2 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$d = objectProto$g.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
 
 /**
  * Checks if `value` is an empty object, collection, map, or set.
@@ -4059,14 +4059,14 @@ function isEmpty(value) {
     return !value.length;
   }
   var tag = _getTag(value);
-  if (tag == mapTag$6 || tag == setTag$6) {
+  if (tag == mapTag$1 || tag == setTag$1) {
     return !value.size;
   }
   if (_isPrototype(value)) {
     return !_baseKeys(value).length;
   }
   for (var key in value) {
-    if (hasOwnProperty$d.call(value, key)) {
+    if (hasOwnProperty$2.call(value, key)) {
       return false;
     }
   }
@@ -4265,7 +4265,7 @@ function reduce(collection, iteratee, accumulator) {
 var reduce_1 = reduce;
 
 /** `Object#toString` result references. */
-var stringTag$4 = '[object String]';
+var stringTag = '[object String]';
 
 /**
  * Checks if `value` is classified as a `String` primitive or object.
@@ -4286,7 +4286,7 @@ var stringTag$4 = '[object String]';
  */
 function isString(value) {
   return typeof value == 'string' ||
-    (!isArray_1(value) && isObjectLike_1(value) && _baseGetTag(value) == stringTag$4);
+    (!isArray_1(value) && isObjectLike_1(value) && _baseGetTag(value) == stringTag);
 }
 
 var isString_1 = isString;
@@ -4303,18 +4303,18 @@ var asciiSize = _baseProperty('length');
 var _asciiSize = asciiSize;
 
 /** Used to compose unicode character classes. */
-var rsAstralRange = '\\ud800-\\udfff',
-    rsComboMarksRange = '\\u0300-\\u036f',
-    reComboHalfMarksRange = '\\ufe20-\\ufe2f',
-    rsComboSymbolsRange = '\\u20d0-\\u20ff',
-    rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
-    rsVarRange = '\\ufe0e\\ufe0f';
+var rsAstralRange$1 = '\\ud800-\\udfff',
+    rsComboMarksRange$1 = '\\u0300-\\u036f',
+    reComboHalfMarksRange$1 = '\\ufe20-\\ufe2f',
+    rsComboSymbolsRange$1 = '\\u20d0-\\u20ff',
+    rsComboRange$1 = rsComboMarksRange$1 + reComboHalfMarksRange$1 + rsComboSymbolsRange$1,
+    rsVarRange$1 = '\\ufe0e\\ufe0f';
 
 /** Used to compose unicode capture groups. */
-var rsZWJ = '\\u200d';
+var rsZWJ$1 = '\\u200d';
 
 /** Used to detect strings with [zero-width joiners or code points from the astral planes](http://eev.ee/blog/2015/09/12/dark-corners-of-unicode/). */
-var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboRange + rsVarRange + ']');
+var reHasUnicode = RegExp('[' + rsZWJ$1 + rsAstralRange$1  + rsComboRange$1 + rsVarRange$1 + ']');
 
 /**
  * Checks if `string` contains Unicode symbols.
@@ -4330,27 +4330,27 @@ function hasUnicode(string) {
 var _hasUnicode = hasUnicode;
 
 /** Used to compose unicode character classes. */
-var rsAstralRange$1 = '\\ud800-\\udfff',
-    rsComboMarksRange$1 = '\\u0300-\\u036f',
-    reComboHalfMarksRange$1 = '\\ufe20-\\ufe2f',
-    rsComboSymbolsRange$1 = '\\u20d0-\\u20ff',
-    rsComboRange$1 = rsComboMarksRange$1 + reComboHalfMarksRange$1 + rsComboSymbolsRange$1,
-    rsVarRange$1 = '\\ufe0e\\ufe0f';
+var rsAstralRange = '\\ud800-\\udfff',
+    rsComboMarksRange = '\\u0300-\\u036f',
+    reComboHalfMarksRange = '\\ufe20-\\ufe2f',
+    rsComboSymbolsRange = '\\u20d0-\\u20ff',
+    rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
+    rsVarRange = '\\ufe0e\\ufe0f';
 
 /** Used to compose unicode capture groups. */
-var rsAstral = '[' + rsAstralRange$1 + ']',
-    rsCombo = '[' + rsComboRange$1 + ']',
+var rsAstral = '[' + rsAstralRange + ']',
+    rsCombo = '[' + rsComboRange + ']',
     rsFitz = '\\ud83c[\\udffb-\\udfff]',
     rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
-    rsNonAstral = '[^' + rsAstralRange$1 + ']',
+    rsNonAstral = '[^' + rsAstralRange + ']',
     rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
     rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
-    rsZWJ$1 = '\\u200d';
+    rsZWJ = '\\u200d';
 
 /** Used to compose unicode regexes. */
 var reOptMod = rsModifier + '?',
-    rsOptVar = '[' + rsVarRange$1 + ']?',
-    rsOptJoin = '(?:' + rsZWJ$1 + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+    rsOptVar = '[' + rsVarRange + ']?',
+    rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
     rsSeq = rsOptVar + reOptMod + rsOptJoin,
     rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
 
@@ -4390,8 +4390,8 @@ function stringSize(string) {
 var _stringSize = stringSize;
 
 /** `Object#toString` result references. */
-var mapTag$7 = '[object Map]',
-    setTag$7 = '[object Set]';
+var mapTag = '[object Map]',
+    setTag = '[object Set]';
 
 /**
  * Gets the size of `collection` by returning its length for array-like
@@ -4422,7 +4422,7 @@ function size(collection) {
     return isString_1(collection) ? _stringSize(collection) : collection.length;
   }
   var tag = _getTag(collection);
-  if (tag == mapTag$7 || tag == setTag$7) {
+  if (tag == mapTag || tag == setTag) {
     return collection.size;
   }
   return _baseKeys(collection).length;
@@ -4561,7 +4561,7 @@ function apply(func, thisArg, args) {
 var _apply = apply;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max;
+var nativeMax$2 = Math.max;
 
 /**
  * A specialized version of `baseRest` which transforms the rest array.
@@ -4573,11 +4573,11 @@ var nativeMax = Math.max;
  * @returns {Function} Returns the new function.
  */
 function overRest(func, start, transform) {
-  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  start = nativeMax$2(start === undefined ? (func.length - 1) : start, 0);
   return function() {
     var args = arguments,
         index = -1,
-        length = nativeMax(args.length - start, 0),
+        length = nativeMax$2(args.length - start, 0),
         array = Array(length);
 
     while (++index < length) {
@@ -4815,7 +4815,7 @@ function noop() {
 var noop_1 = noop;
 
 /** Used as references for various `Number` constants. */
-var INFINITY$2 = 1 / 0;
+var INFINITY$1 = 1 / 0;
 
 /**
  * Creates a set object of `values`.
@@ -4824,14 +4824,14 @@ var INFINITY$2 = 1 / 0;
  * @param {Array} values The values to add to the set.
  * @returns {Object} Returns the new set.
  */
-var createSet = !(_Set && (1 / _setToArray(new _Set([,-0]))[1]) == INFINITY$2) ? noop_1 : function(values) {
+var createSet = !(_Set && (1 / _setToArray(new _Set([,-0]))[1]) == INFINITY$1) ? noop_1 : function(values) {
   return new _Set(values);
 };
 
 var _createSet = createSet;
 
 /** Used as the size to enable large array optimizations. */
-var LARGE_ARRAY_SIZE$1 = 200;
+var LARGE_ARRAY_SIZE = 200;
 
 /**
  * The base implementation of `_.uniqBy` without support for iteratee shorthands.
@@ -4854,7 +4854,7 @@ function baseUniq(array, iteratee, comparator) {
     isCommon = false;
     includes = _arrayIncludesWith;
   }
-  else if (length >= LARGE_ARRAY_SIZE$1) {
+  else if (length >= LARGE_ARRAY_SIZE) {
     var set = iteratee ? null : _createSet(array);
     if (set) {
       return _setToArray(set);
@@ -5001,11 +5001,11 @@ var values_1 = values;
 
 /* global window */
 
-var lodash;
+var lodash$1;
 
 if (typeof commonjsRequire === "function") {
   try {
-    lodash = {
+    lodash$1 = {
       clone: clone_1,
       constant: constant_1,
       each: each,
@@ -5028,13 +5028,13 @@ if (typeof commonjsRequire === "function") {
   }
 }
 
-if (!lodash) {
-  lodash = window._;
+if (!lodash$1) {
+  lodash$1 = window._;
 }
 
-var lodash_1 = lodash;
+var lodash_1$1 = lodash$1;
 
-var graph = Graph;
+var graph = Graph$8;
 
 var DEFAULT_EDGE_NAME = "\x00";
 var GRAPH_NODE = "\x00";
@@ -5050,19 +5050,19 @@ var EDGE_KEY_DELIM = "\x01";
 //    edges up and, object properties, which have string keys, are the closest
 //    we're going to get to a performant hashtable in JavaScript.
 
-function Graph(opts) {
-  this._isDirected = lodash_1.has(opts, "directed") ? opts.directed : true;
-  this._isMultigraph = lodash_1.has(opts, "multigraph") ? opts.multigraph : false;
-  this._isCompound = lodash_1.has(opts, "compound") ? opts.compound : false;
+function Graph$8(opts) {
+  this._isDirected = lodash_1$1.has(opts, "directed") ? opts.directed : true;
+  this._isMultigraph = lodash_1$1.has(opts, "multigraph") ? opts.multigraph : false;
+  this._isCompound = lodash_1$1.has(opts, "compound") ? opts.compound : false;
 
   // Label for the graph itself
   this._label = undefined;
 
   // Defaults to be set when creating a new node
-  this._defaultNodeLabelFn = lodash_1.constant(undefined);
+  this._defaultNodeLabelFn = lodash_1$1.constant(undefined);
 
   // Defaults to be set when creating a new edge
-  this._defaultEdgeLabelFn = lodash_1.constant(undefined);
+  this._defaultEdgeLabelFn = lodash_1$1.constant(undefined);
 
   // v -> label
   this._nodes = {};
@@ -5096,72 +5096,72 @@ function Graph(opts) {
 }
 
 /* Number of nodes in the graph. Should only be changed by the implementation. */
-Graph.prototype._nodeCount = 0;
+Graph$8.prototype._nodeCount = 0;
 
 /* Number of edges in the graph. Should only be changed by the implementation. */
-Graph.prototype._edgeCount = 0;
+Graph$8.prototype._edgeCount = 0;
 
 
 /* === Graph functions ========= */
 
-Graph.prototype.isDirected = function() {
+Graph$8.prototype.isDirected = function() {
   return this._isDirected;
 };
 
-Graph.prototype.isMultigraph = function() {
+Graph$8.prototype.isMultigraph = function() {
   return this._isMultigraph;
 };
 
-Graph.prototype.isCompound = function() {
+Graph$8.prototype.isCompound = function() {
   return this._isCompound;
 };
 
-Graph.prototype.setGraph = function(label) {
+Graph$8.prototype.setGraph = function(label) {
   this._label = label;
   return this;
 };
 
-Graph.prototype.graph = function() {
+Graph$8.prototype.graph = function() {
   return this._label;
 };
 
 
 /* === Node functions ========== */
 
-Graph.prototype.setDefaultNodeLabel = function(newDefault) {
-  if (!lodash_1.isFunction(newDefault)) {
-    newDefault = lodash_1.constant(newDefault);
+Graph$8.prototype.setDefaultNodeLabel = function(newDefault) {
+  if (!lodash_1$1.isFunction(newDefault)) {
+    newDefault = lodash_1$1.constant(newDefault);
   }
   this._defaultNodeLabelFn = newDefault;
   return this;
 };
 
-Graph.prototype.nodeCount = function() {
+Graph$8.prototype.nodeCount = function() {
   return this._nodeCount;
 };
 
-Graph.prototype.nodes = function() {
-  return lodash_1.keys(this._nodes);
+Graph$8.prototype.nodes = function() {
+  return lodash_1$1.keys(this._nodes);
 };
 
-Graph.prototype.sources = function() {
+Graph$8.prototype.sources = function() {
   var self = this;
-  return lodash_1.filter(this.nodes(), function(v) {
-    return lodash_1.isEmpty(self._in[v]);
+  return lodash_1$1.filter(this.nodes(), function(v) {
+    return lodash_1$1.isEmpty(self._in[v]);
   });
 };
 
-Graph.prototype.sinks = function() {
+Graph$8.prototype.sinks = function() {
   var self = this;
-  return lodash_1.filter(this.nodes(), function(v) {
-    return lodash_1.isEmpty(self._out[v]);
+  return lodash_1$1.filter(this.nodes(), function(v) {
+    return lodash_1$1.isEmpty(self._out[v]);
   });
 };
 
-Graph.prototype.setNodes = function(vs, value) {
+Graph$8.prototype.setNodes = function(vs, value) {
   var args = arguments;
   var self = this;
-  lodash_1.each(vs, function(v) {
+  lodash_1$1.each(vs, function(v) {
     if (args.length > 1) {
       self.setNode(v, value);
     } else {
@@ -5171,8 +5171,8 @@ Graph.prototype.setNodes = function(vs, value) {
   return this;
 };
 
-Graph.prototype.setNode = function(v, value) {
-  if (lodash_1.has(this._nodes, v)) {
+Graph$8.prototype.setNode = function(v, value) {
+  if (lodash_1$1.has(this._nodes, v)) {
     if (arguments.length > 1) {
       this._nodes[v] = value;
     }
@@ -5193,31 +5193,31 @@ Graph.prototype.setNode = function(v, value) {
   return this;
 };
 
-Graph.prototype.node = function(v) {
+Graph$8.prototype.node = function(v) {
   return this._nodes[v];
 };
 
-Graph.prototype.hasNode = function(v) {
-  return lodash_1.has(this._nodes, v);
+Graph$8.prototype.hasNode = function(v) {
+  return lodash_1$1.has(this._nodes, v);
 };
 
-Graph.prototype.removeNode =  function(v) {
+Graph$8.prototype.removeNode =  function(v) {
   var self = this;
-  if (lodash_1.has(this._nodes, v)) {
+  if (lodash_1$1.has(this._nodes, v)) {
     var removeEdge = function(e) { self.removeEdge(self._edgeObjs[e]); };
     delete this._nodes[v];
     if (this._isCompound) {
       this._removeFromParentsChildList(v);
       delete this._parent[v];
-      lodash_1.each(this.children(v), function(child) {
+      lodash_1$1.each(this.children(v), function(child) {
         self.setParent(child);
       });
       delete this._children[v];
     }
-    lodash_1.each(lodash_1.keys(this._in[v]), removeEdge);
+    lodash_1$1.each(lodash_1$1.keys(this._in[v]), removeEdge);
     delete this._in[v];
     delete this._preds[v];
-    lodash_1.each(lodash_1.keys(this._out[v]), removeEdge);
+    lodash_1$1.each(lodash_1$1.keys(this._out[v]), removeEdge);
     delete this._out[v];
     delete this._sucs[v];
     --this._nodeCount;
@@ -5225,18 +5225,18 @@ Graph.prototype.removeNode =  function(v) {
   return this;
 };
 
-Graph.prototype.setParent = function(v, parent) {
+Graph$8.prototype.setParent = function(v, parent) {
   if (!this._isCompound) {
     throw new Error("Cannot set parent in a non-compound graph");
   }
 
-  if (lodash_1.isUndefined(parent)) {
+  if (lodash_1$1.isUndefined(parent)) {
     parent = GRAPH_NODE;
   } else {
     // Coerce parent to string
     parent += "";
     for (var ancestor = parent;
-      !lodash_1.isUndefined(ancestor);
+      !lodash_1$1.isUndefined(ancestor);
       ancestor = this.parent(ancestor)) {
       if (ancestor === v) {
         throw new Error("Setting " + parent+ " as parent of " + v +
@@ -5254,11 +5254,11 @@ Graph.prototype.setParent = function(v, parent) {
   return this;
 };
 
-Graph.prototype._removeFromParentsChildList = function(v) {
+Graph$8.prototype._removeFromParentsChildList = function(v) {
   delete this._children[this._parent[v]][v];
 };
 
-Graph.prototype.parent = function(v) {
+Graph$8.prototype.parent = function(v) {
   if (this._isCompound) {
     var parent = this._parent[v];
     if (parent !== GRAPH_NODE) {
@@ -5267,15 +5267,15 @@ Graph.prototype.parent = function(v) {
   }
 };
 
-Graph.prototype.children = function(v) {
-  if (lodash_1.isUndefined(v)) {
+Graph$8.prototype.children = function(v) {
+  if (lodash_1$1.isUndefined(v)) {
     v = GRAPH_NODE;
   }
 
   if (this._isCompound) {
     var children = this._children[v];
     if (children) {
-      return lodash_1.keys(children);
+      return lodash_1$1.keys(children);
     }
   } else if (v === GRAPH_NODE) {
     return this.nodes();
@@ -5284,28 +5284,28 @@ Graph.prototype.children = function(v) {
   }
 };
 
-Graph.prototype.predecessors = function(v) {
+Graph$8.prototype.predecessors = function(v) {
   var predsV = this._preds[v];
   if (predsV) {
-    return lodash_1.keys(predsV);
+    return lodash_1$1.keys(predsV);
   }
 };
 
-Graph.prototype.successors = function(v) {
+Graph$8.prototype.successors = function(v) {
   var sucsV = this._sucs[v];
   if (sucsV) {
-    return lodash_1.keys(sucsV);
+    return lodash_1$1.keys(sucsV);
   }
 };
 
-Graph.prototype.neighbors = function(v) {
+Graph$8.prototype.neighbors = function(v) {
   var preds = this.predecessors(v);
   if (preds) {
-    return lodash_1.union(preds, this.successors(v));
+    return lodash_1$1.union(preds, this.successors(v));
   }
 };
 
-Graph.prototype.isLeaf = function (v) {
+Graph$8.prototype.isLeaf = function (v) {
   var neighbors;
   if (this.isDirected()) {
     neighbors = this.successors(v);
@@ -5315,7 +5315,7 @@ Graph.prototype.isLeaf = function (v) {
   return neighbors.length === 0;
 };
 
-Graph.prototype.filterNodes = function(filter) {
+Graph$8.prototype.filterNodes = function(filter) {
   var copy = new this.constructor({
     directed: this._isDirected,
     multigraph: this._isMultigraph,
@@ -5325,13 +5325,13 @@ Graph.prototype.filterNodes = function(filter) {
   copy.setGraph(this.graph());
 
   var self = this;
-  lodash_1.each(this._nodes, function(value, v) {
+  lodash_1$1.each(this._nodes, function(value, v) {
     if (filter(v)) {
       copy.setNode(v, value);
     }
   });
 
-  lodash_1.each(this._edgeObjs, function(e) {
+  lodash_1$1.each(this._edgeObjs, function(e) {
     if (copy.hasNode(e.v) && copy.hasNode(e.w)) {
       copy.setEdge(e, self.edge(e));
     }
@@ -5351,7 +5351,7 @@ Graph.prototype.filterNodes = function(filter) {
   }
 
   if (this._isCompound) {
-    lodash_1.each(copy.nodes(), function(v) {
+    lodash_1$1.each(copy.nodes(), function(v) {
       copy.setParent(v, findParent(v));
     });
   }
@@ -5361,26 +5361,26 @@ Graph.prototype.filterNodes = function(filter) {
 
 /* === Edge functions ========== */
 
-Graph.prototype.setDefaultEdgeLabel = function(newDefault) {
-  if (!lodash_1.isFunction(newDefault)) {
-    newDefault = lodash_1.constant(newDefault);
+Graph$8.prototype.setDefaultEdgeLabel = function(newDefault) {
+  if (!lodash_1$1.isFunction(newDefault)) {
+    newDefault = lodash_1$1.constant(newDefault);
   }
   this._defaultEdgeLabelFn = newDefault;
   return this;
 };
 
-Graph.prototype.edgeCount = function() {
+Graph$8.prototype.edgeCount = function() {
   return this._edgeCount;
 };
 
-Graph.prototype.edges = function() {
-  return lodash_1.values(this._edgeObjs);
+Graph$8.prototype.edges = function() {
+  return lodash_1$1.values(this._edgeObjs);
 };
 
-Graph.prototype.setPath = function(vs, value) {
+Graph$8.prototype.setPath = function(vs, value) {
   var self = this;
   var args = arguments;
-  lodash_1.reduce(vs, function(v, w) {
+  lodash_1$1.reduce(vs, function(v, w) {
     if (args.length > 1) {
       self.setEdge(v, w, value);
     } else {
@@ -5395,7 +5395,7 @@ Graph.prototype.setPath = function(vs, value) {
  * setEdge(v, w, [value, [name]])
  * setEdge({ v, w, [name] }, [value])
  */
-Graph.prototype.setEdge = function() {
+Graph$8.prototype.setEdge = function() {
   var v, w, name, value;
   var valueSpecified = false;
   var arg0 = arguments[0];
@@ -5420,19 +5420,19 @@ Graph.prototype.setEdge = function() {
 
   v = "" + v;
   w = "" + w;
-  if (!lodash_1.isUndefined(name)) {
+  if (!lodash_1$1.isUndefined(name)) {
     name = "" + name;
   }
 
   var e = edgeArgsToId(this._isDirected, v, w, name);
-  if (lodash_1.has(this._edgeLabels, e)) {
+  if (lodash_1$1.has(this._edgeLabels, e)) {
     if (valueSpecified) {
       this._edgeLabels[e] = value;
     }
     return this;
   }
 
-  if (!lodash_1.isUndefined(name) && !this._isMultigraph) {
+  if (!lodash_1$1.isUndefined(name) && !this._isMultigraph) {
     throw new Error("Cannot set a named edge when isMultigraph = false");
   }
 
@@ -5458,21 +5458,21 @@ Graph.prototype.setEdge = function() {
   return this;
 };
 
-Graph.prototype.edge = function(v, w, name) {
+Graph$8.prototype.edge = function(v, w, name) {
   var e = (arguments.length === 1
     ? edgeObjToId(this._isDirected, arguments[0])
     : edgeArgsToId(this._isDirected, v, w, name));
   return this._edgeLabels[e];
 };
 
-Graph.prototype.hasEdge = function(v, w, name) {
+Graph$8.prototype.hasEdge = function(v, w, name) {
   var e = (arguments.length === 1
     ? edgeObjToId(this._isDirected, arguments[0])
     : edgeArgsToId(this._isDirected, v, w, name));
-  return lodash_1.has(this._edgeLabels, e);
+  return lodash_1$1.has(this._edgeLabels, e);
 };
 
-Graph.prototype.removeEdge = function(v, w, name) {
+Graph$8.prototype.removeEdge = function(v, w, name) {
   var e = (arguments.length === 1
     ? edgeObjToId(this._isDirected, arguments[0])
     : edgeArgsToId(this._isDirected, v, w, name));
@@ -5491,29 +5491,29 @@ Graph.prototype.removeEdge = function(v, w, name) {
   return this;
 };
 
-Graph.prototype.inEdges = function(v, u) {
+Graph$8.prototype.inEdges = function(v, u) {
   var inV = this._in[v];
   if (inV) {
-    var edges = lodash_1.values(inV);
+    var edges = lodash_1$1.values(inV);
     if (!u) {
       return edges;
     }
-    return lodash_1.filter(edges, function(edge) { return edge.v === u; });
+    return lodash_1$1.filter(edges, function(edge) { return edge.v === u; });
   }
 };
 
-Graph.prototype.outEdges = function(v, w) {
+Graph$8.prototype.outEdges = function(v, w) {
   var outV = this._out[v];
   if (outV) {
-    var edges = lodash_1.values(outV);
+    var edges = lodash_1$1.values(outV);
     if (!w) {
       return edges;
     }
-    return lodash_1.filter(edges, function(edge) { return edge.w === w; });
+    return lodash_1$1.filter(edges, function(edge) { return edge.w === w; });
   }
 };
 
-Graph.prototype.nodeEdges = function(v, w) {
+Graph$8.prototype.nodeEdges = function(v, w) {
   var inEdges = this.inEdges(v, w);
   if (inEdges) {
     return inEdges.concat(this.outEdges(v, w));
@@ -5541,7 +5541,7 @@ function edgeArgsToId(isDirected, v_, w_, name) {
     w = tmp;
   }
   return v + EDGE_KEY_DELIM + w + EDGE_KEY_DELIM +
-             (lodash_1.isUndefined(name) ? DEFAULT_EDGE_NAME : name);
+             (lodash_1$1.isUndefined(name) ? DEFAULT_EDGE_NAME : name);
 }
 
 function edgeArgsToObj(isDirected, v_, w_, name) {
@@ -5563,12 +5563,12 @@ function edgeObjToId(isDirected, edgeObj) {
   return edgeArgsToId(isDirected, edgeObj.v, edgeObj.w, edgeObj.name);
 }
 
-var version = '2.1.8';
+var version$1 = '2.1.8';
 
 // Includes only the "core" of graphlib
 var lib = {
   Graph: graph,
-  version: version
+  version: version$1
 };
 
 var json = {
@@ -5586,21 +5586,21 @@ function write(g) {
     nodes: writeNodes(g),
     edges: writeEdges(g)
   };
-  if (!lodash_1.isUndefined(g.graph())) {
-    json.value = lodash_1.clone(g.graph());
+  if (!lodash_1$1.isUndefined(g.graph())) {
+    json.value = lodash_1$1.clone(g.graph());
   }
   return json;
 }
 
 function writeNodes(g) {
-  return lodash_1.map(g.nodes(), function(v) {
+  return lodash_1$1.map(g.nodes(), function(v) {
     var nodeValue = g.node(v);
     var parent = g.parent(v);
     var node = { v: v };
-    if (!lodash_1.isUndefined(nodeValue)) {
+    if (!lodash_1$1.isUndefined(nodeValue)) {
       node.value = nodeValue;
     }
-    if (!lodash_1.isUndefined(parent)) {
+    if (!lodash_1$1.isUndefined(parent)) {
       node.parent = parent;
     }
     return node;
@@ -5608,13 +5608,13 @@ function writeNodes(g) {
 }
 
 function writeEdges(g) {
-  return lodash_1.map(g.edges(), function(e) {
+  return lodash_1$1.map(g.edges(), function(e) {
     var edgeValue = g.edge(e);
     var edge = { v: e.v, w: e.w };
-    if (!lodash_1.isUndefined(e.name)) {
+    if (!lodash_1$1.isUndefined(e.name)) {
       edge.name = e.name;
     }
-    if (!lodash_1.isUndefined(edgeValue)) {
+    if (!lodash_1$1.isUndefined(edgeValue)) {
       edge.value = edgeValue;
     }
     return edge;
@@ -5623,13 +5623,13 @@ function writeEdges(g) {
 
 function read(json) {
   var g = new graph(json.options).setGraph(json.value);
-  lodash_1.each(json.nodes, function(entry) {
+  lodash_1$1.each(json.nodes, function(entry) {
     g.setNode(entry.v, entry.value);
     if (entry.parent) {
       g.setParent(entry.v, entry.parent);
     }
   });
-  lodash_1.each(json.edges, function(entry) {
+  lodash_1$1.each(json.edges, function(entry) {
     g.setEdge({ v: entry.v, w: entry.w, name: entry.name }, entry.value);
   });
   return g;
@@ -5643,14 +5643,14 @@ function components(g) {
   var cmpt;
 
   function dfs(v) {
-    if (lodash_1.has(visited, v)) return;
+    if (lodash_1$1.has(visited, v)) return;
     visited[v] = true;
     cmpt.push(v);
-    lodash_1.each(g.successors(v), dfs);
-    lodash_1.each(g.predecessors(v), dfs);
+    lodash_1$1.each(g.successors(v), dfs);
+    lodash_1$1.each(g.predecessors(v), dfs);
   }
 
-  lodash_1.each(g.nodes(), function(v) {
+  lodash_1$1.each(g.nodes(), function(v) {
     cmpt = [];
     dfs(v);
     if (cmpt.length) {
@@ -5693,7 +5693,7 @@ PriorityQueue.prototype.keys = function() {
  * Returns `true` if **key** is in the queue and `false` if not.
  */
 PriorityQueue.prototype.has = function(key) {
-  return lodash_1.has(this._keyIndices, key);
+  return lodash_1$1.has(this._keyIndices, key);
 };
 
 /**
@@ -5731,7 +5731,7 @@ PriorityQueue.prototype.min = function() {
 PriorityQueue.prototype.add = function(key, priority) {
   var keyIndices = this._keyIndices;
   key = String(key);
-  if (!lodash_1.has(keyIndices, key)) {
+  if (!lodash_1$1.has(keyIndices, key)) {
     var arr = this._arr;
     var index = arr.length;
     keyIndices[key] = index;
@@ -5814,11 +5814,11 @@ PriorityQueue.prototype._swap = function(i, j) {
 
 var dijkstra_1 = dijkstra;
 
-var DEFAULT_WEIGHT_FUNC = lodash_1.constant(1);
+var DEFAULT_WEIGHT_FUNC$1 = lodash_1$1.constant(1);
 
 function dijkstra(g, source, weightFn, edgeFn) {
   return runDijkstra(g, String(source),
-    weightFn || DEFAULT_WEIGHT_FUNC,
+    weightFn || DEFAULT_WEIGHT_FUNC$1,
     edgeFn || function(v) { return g.outEdges(v); });
 }
 
@@ -5867,7 +5867,7 @@ function runDijkstra(g, source, weightFn, edgeFn) {
 var dijkstraAll_1 = dijkstraAll;
 
 function dijkstraAll(g, weightFunc, edgeFunc) {
-  return lodash_1.transform(g.nodes(), function(acc, v) {
+  return lodash_1$1.transform(g.nodes(), function(acc, v) {
     acc[v] = dijkstra_1(g, v, weightFunc, edgeFunc);
   }, {});
 }
@@ -5889,7 +5889,7 @@ function tarjan(g) {
     stack.push(v);
 
     g.successors(v).forEach(function(w) {
-      if (!lodash_1.has(visited, w)) {
+      if (!lodash_1$1.has(visited, w)) {
         dfs(w);
         entry.lowlink = Math.min(entry.lowlink, visited[w].lowlink);
       } else if (visited[w].onStack) {
@@ -5910,7 +5910,7 @@ function tarjan(g) {
   }
 
   g.nodes().forEach(function(v) {
-    if (!lodash_1.has(visited, v)) {
+    if (!lodash_1$1.has(visited, v)) {
       dfs(v);
     }
   });
@@ -5921,18 +5921,18 @@ function tarjan(g) {
 var findCycles_1 = findCycles;
 
 function findCycles(g) {
-  return lodash_1.filter(tarjan_1(g), function(cmpt) {
+  return lodash_1$1.filter(tarjan_1(g), function(cmpt) {
     return cmpt.length > 1 || (cmpt.length === 1 && g.hasEdge(cmpt[0], cmpt[0]));
   });
 }
 
 var floydWarshall_1 = floydWarshall;
 
-var DEFAULT_WEIGHT_FUNC$1 = lodash_1.constant(1);
+var DEFAULT_WEIGHT_FUNC = lodash_1$1.constant(1);
 
 function floydWarshall(g, weightFn, edgeFn) {
   return runFloydWarshall(g,
-    weightFn || DEFAULT_WEIGHT_FUNC$1,
+    weightFn || DEFAULT_WEIGHT_FUNC,
     edgeFn || function(v) { return g.outEdges(v); });
 }
 
@@ -5984,22 +5984,22 @@ function topsort(g) {
   var results = [];
 
   function visit(node) {
-    if (lodash_1.has(stack, node)) {
+    if (lodash_1$1.has(stack, node)) {
       throw new CycleException();
     }
 
-    if (!lodash_1.has(visited, node)) {
+    if (!lodash_1$1.has(visited, node)) {
       stack[node] = true;
       visited[node] = true;
-      lodash_1.each(g.predecessors(node), visit);
+      lodash_1$1.each(g.predecessors(node), visit);
       delete stack[node];
       results.push(node);
     }
   }
 
-  lodash_1.each(g.sinks(), visit);
+  lodash_1$1.each(g.sinks(), visit);
 
-  if (lodash_1.size(visited) !== g.nodeCount()) {
+  if (lodash_1$1.size(visited) !== g.nodeCount()) {
     throw new CycleException();
   }
 
@@ -6023,7 +6023,7 @@ function isAcyclic(g) {
   return true;
 }
 
-var dfs_1 = dfs;
+var dfs_1 = dfs$1;
 
 /*
  * A helper that preforms a pre- or post-order traversal on the input graph
@@ -6033,8 +6033,8 @@ var dfs_1 = dfs;
  *
  * Order must be one of "pre" or "post".
  */
-function dfs(g, vs, order) {
-  if (!lodash_1.isArray(vs)) {
+function dfs$1(g, vs, order) {
+  if (!lodash_1$1.isArray(vs)) {
     vs = [vs];
   }
 
@@ -6042,7 +6042,7 @@ function dfs(g, vs, order) {
 
   var acc = [];
   var visited = {};
-  lodash_1.each(vs, function(v) {
+  lodash_1$1.each(vs, function(v) {
     if (!g.hasNode(v)) {
       throw new Error("Graph does not have node: " + v);
     }
@@ -6053,26 +6053,26 @@ function dfs(g, vs, order) {
 }
 
 function doDfs(g, v, postorder, visited, navigation, acc) {
-  if (!lodash_1.has(visited, v)) {
+  if (!lodash_1$1.has(visited, v)) {
     visited[v] = true;
 
     if (!postorder) { acc.push(v); }
-    lodash_1.each(navigation(v), function(w) {
+    lodash_1$1.each(navigation(v), function(w) {
       doDfs(g, w, postorder, visited, navigation, acc);
     });
     if (postorder) { acc.push(v); }
   }
 }
 
-var postorder_1 = postorder;
+var postorder_1 = postorder$2;
 
-function postorder(g, vs) {
+function postorder$2(g, vs) {
   return dfs_1(g, vs, "post");
 }
 
-var preorder_1 = preorder;
+var preorder_1 = preorder$1;
 
-function preorder(g, vs) {
+function preorder$1(g, vs) {
   return dfs_1(g, vs, "pre");
 }
 
@@ -6100,7 +6100,7 @@ function prim(g, weightFunc) {
     return result;
   }
 
-  lodash_1.each(g.nodes(), function(v) {
+  lodash_1$1.each(g.nodes(), function(v) {
     pq.add(v, Number.POSITIVE_INFINITY);
     result.setNode(v);
   });
@@ -6111,7 +6111,7 @@ function prim(g, weightFunc) {
   var init = false;
   while (pq.size() > 0) {
     v = pq.removeMin();
-    if (lodash_1.has(parents, v)) {
+    if (lodash_1$1.has(parents, v)) {
       result.setEdge(v, parents[v]);
     } else if (init) {
       throw new Error("Input graph is not connected: " + g);
@@ -6169,7 +6169,7 @@ var alg = {
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var graphlib = {
+var graphlib$1 = {
   Graph: lib.Graph,
   json: json,
   alg: alg,
@@ -6178,25 +6178,25 @@ var graphlib = {
 
 /* global window */
 
-var graphlib$1;
+var graphlib;
 
 if (typeof commonjsRequire === "function") {
   try {
-    graphlib$1 = graphlib;
+    graphlib = graphlib$1;
   } catch (e) {
     // continue regardless of error
   }
 }
 
-if (!graphlib$1) {
-  graphlib$1 = window.graphlib;
+if (!graphlib) {
+  graphlib = window.graphlib;
 }
 
-var graphlib_1 = graphlib$1;
+var graphlib_1 = graphlib;
 
 /** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG$1 = 1,
-    CLONE_SYMBOLS_FLAG$2 = 4;
+var CLONE_DEEP_FLAG = 1,
+    CLONE_SYMBOLS_FLAG = 4;
 
 /**
  * This method is like `_.clone` except that it recursively clones `value`.
@@ -6217,7 +6217,7 @@ var CLONE_DEEP_FLAG$1 = 1,
  * // => false
  */
 function cloneDeep(value) {
-  return _baseClone(value, CLONE_DEEP_FLAG$1 | CLONE_SYMBOLS_FLAG$2);
+  return _baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
 }
 
 var cloneDeep_1 = cloneDeep;
@@ -6249,10 +6249,10 @@ function isIterateeCall(value, index, object) {
 var _isIterateeCall = isIterateeCall;
 
 /** Used for built-in method references. */
-var objectProto$h = Object.prototype;
+var objectProto$1 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$e = objectProto$h.hasOwnProperty;
+var hasOwnProperty$1 = objectProto$1.hasOwnProperty;
 
 /**
  * Assigns own and inherited enumerable string keyed properties of source
@@ -6297,7 +6297,7 @@ var defaults = _baseRest(function(object, sources) {
       var value = object[key];
 
       if (value === undefined ||
-          (eq_1(value, objectProto$h[key]) && !hasOwnProperty$e.call(object, key))) {
+          (eq_1(value, objectProto$1[key]) && !hasOwnProperty$1.call(object, key))) {
         object[key] = source[key];
       }
     }
@@ -6330,11 +6330,46 @@ function createFind(findIndexFunc) {
 
 var _createFind = createFind;
 
+/** Used to match a single whitespace character. */
+var reWhitespace = /\s/;
+
+/**
+ * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+ * character of `string`.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {number} Returns the index of the last non-whitespace character.
+ */
+function trimmedEndIndex(string) {
+  var index = string.length;
+
+  while (index-- && reWhitespace.test(string.charAt(index))) {}
+  return index;
+}
+
+var _trimmedEndIndex = trimmedEndIndex;
+
+/** Used to match leading whitespace. */
+var reTrimStart = /^\s+/;
+
+/**
+ * The base implementation of `_.trim`.
+ *
+ * @private
+ * @param {string} string The string to trim.
+ * @returns {string} Returns the trimmed string.
+ */
+function baseTrim(string) {
+  return string
+    ? string.slice(0, _trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+    : string;
+}
+
+var _baseTrim = baseTrim;
+
 /** Used as references for various `Number` constants. */
 var NAN = 0 / 0;
-
-/** Used to match leading and trailing whitespace. */
-var reTrim = /^\s+|\s+$/g;
 
 /** Used to detect bad signed hexadecimal string values. */
 var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
@@ -6385,7 +6420,7 @@ function toNumber(value) {
   if (typeof value != 'string') {
     return value === 0 ? value : +value;
   }
-  value = value.replace(reTrim, '');
+  value = _baseTrim(value);
   var isBinary = reIsBinary.test(value);
   return (isBinary || reIsOctal.test(value))
     ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -6395,7 +6430,7 @@ function toNumber(value) {
 var toNumber_1 = toNumber;
 
 /** Used as references for various `Number` constants. */
-var INFINITY$3 = 1 / 0,
+var INFINITY = 1 / 0,
     MAX_INTEGER = 1.7976931348623157e+308;
 
 /**
@@ -6426,7 +6461,7 @@ function toFinite(value) {
     return value === 0 ? value : 0;
   }
   value = toNumber_1(value);
-  if (value === INFINITY$3 || value === -INFINITY$3) {
+  if (value === INFINITY || value === -INFINITY) {
     var sign = (value < 0 ? -1 : 1);
     return sign * MAX_INTEGER;
   }
@@ -6771,20 +6806,20 @@ function assignMergeValue(object, key, value) {
 var _assignMergeValue = assignMergeValue;
 
 /** `Object#toString` result references. */
-var objectTag$4 = '[object Object]';
+var objectTag = '[object Object]';
 
 /** Used for built-in method references. */
-var funcProto$2 = Function.prototype,
-    objectProto$i = Object.prototype;
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString$2 = funcProto$2.toString;
+var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$f = objectProto$i.hasOwnProperty;
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /** Used to infer the `Object` constructor. */
-var objectCtorString = funcToString$2.call(Object);
+var objectCtorString = funcToString.call(Object);
 
 /**
  * Checks if `value` is a plain object, that is, an object created by the
@@ -6815,16 +6850,16 @@ var objectCtorString = funcToString$2.call(Object);
  * // => true
  */
 function isPlainObject(value) {
-  if (!isObjectLike_1(value) || _baseGetTag(value) != objectTag$4) {
+  if (!isObjectLike_1(value) || _baseGetTag(value) != objectTag) {
     return false;
   }
   var proto = _getPrototype(value);
   if (proto === null) {
     return true;
   }
-  var Ctor = hasOwnProperty$f.call(proto, 'constructor') && proto.constructor;
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
   return typeof Ctor == 'function' && Ctor instanceof Ctor &&
-    funcToString$2.call(Ctor) == objectCtorString;
+    funcToString.call(Ctor) == objectCtorString;
 }
 
 var isPlainObject_1 = isPlainObject;
@@ -7289,7 +7324,7 @@ var pick_1 = pick;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeCeil = Math.ceil,
-    nativeMax$2 = Math.max;
+    nativeMax = Math.max;
 
 /**
  * The base implementation of `_.range` and `_.rangeRight` which doesn't
@@ -7304,7 +7339,7 @@ var nativeCeil = Math.ceil,
  */
 function baseRange(start, end, step, fromRight) {
   var index = -1,
-      length = nativeMax$2(nativeCeil((end - start) / (step || 1)), 0),
+      length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
       result = Array(length);
 
   while (length--) {
@@ -7652,11 +7687,11 @@ var zipObject_1 = zipObject;
 
 /* global window */
 
-var lodash$1;
+var lodash;
 
 if (typeof commonjsRequire === "function") {
   try {
-    lodash$1 = {
+    lodash = {
       cloneDeep: cloneDeep_1,
       constant: constant_1,
       defaults: defaults_1,
@@ -7689,11 +7724,11 @@ if (typeof commonjsRequire === "function") {
   }
 }
 
-if (!lodash$1) {
-  lodash$1 = window._;
+if (!lodash) {
+  lodash = window._;
 }
 
-var lodash_1$1 = lodash$1;
+var lodash_1 = lodash;
 
 /*
  * Simple doubly linked list implementation derived from Cormen, et al.,
@@ -7751,7 +7786,7 @@ function filterOutLinks(k, v) {
   }
 }
 
-var Graph$1 = graphlib_1.Graph;
+var Graph$7 = graphlib_1.Graph;
 
 
 /*
@@ -7763,7 +7798,7 @@ var Graph$1 = graphlib_1.Graph;
  */
 var greedyFas = greedyFAS;
 
-var DEFAULT_WEIGHT_FN = lodash_1$1.constant(1);
+var DEFAULT_WEIGHT_FN = lodash_1.constant(1);
 
 function greedyFAS(g, weightFn) {
   if (g.nodeCount() <= 1) {
@@ -7773,7 +7808,7 @@ function greedyFAS(g, weightFn) {
   var results = doGreedyFAS(state.graph, state.buckets, state.zeroIdx);
 
   // Expand multi-edges
-  return lodash_1$1.flatten(lodash_1$1.map(results, function(e) {
+  return lodash_1.flatten(lodash_1.map(results, function(e) {
     return g.outEdges(e.v, e.w);
   }), true);
 }
@@ -7804,7 +7839,7 @@ function doGreedyFAS(g, buckets, zeroIdx) {
 function removeNode(g, buckets, zeroIdx, entry, collectPredecessors) {
   var results = collectPredecessors ? [] : undefined;
 
-  lodash_1$1.forEach(g.inEdges(entry.v), function(edge) {
+  lodash_1.forEach(g.inEdges(entry.v), function(edge) {
     var weight = g.edge(edge);
     var uEntry = g.node(edge.v);
 
@@ -7816,7 +7851,7 @@ function removeNode(g, buckets, zeroIdx, entry, collectPredecessors) {
     assignBucket(buckets, zeroIdx, uEntry);
   });
 
-  lodash_1$1.forEach(g.outEdges(entry.v), function(edge) {
+  lodash_1.forEach(g.outEdges(entry.v), function(edge) {
     var weight = g.edge(edge);
     var w = edge.w;
     var wEntry = g.node(w);
@@ -7830,17 +7865,17 @@ function removeNode(g, buckets, zeroIdx, entry, collectPredecessors) {
 }
 
 function buildState(g, weightFn) {
-  var fasGraph = new Graph$1();
+  var fasGraph = new Graph$7();
   var maxIn = 0;
   var maxOut = 0;
 
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     fasGraph.setNode(v, { v: v, "in": 0, out: 0 });
   });
 
   // Aggregate weights on nodes, but also sum the weights across multi-edges
   // into a single edge for the fasGraph.
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var prevWeight = fasGraph.edge(e.v, e.w) || 0;
     var weight = weightFn(e);
     var edgeWeight = prevWeight + weight;
@@ -7849,10 +7884,10 @@ function buildState(g, weightFn) {
     maxIn  = Math.max(maxIn,  fasGraph.node(e.w)["in"]  += weight);
   });
 
-  var buckets = lodash_1$1.range(maxOut + maxIn + 3).map(function() { return new list(); });
+  var buckets = lodash_1.range(maxOut + maxIn + 3).map(function() { return new list(); });
   var zeroIdx = maxIn + 1;
 
-  lodash_1$1.forEach(fasGraph.nodes(), function(v) {
+  lodash_1.forEach(fasGraph.nodes(), function(v) {
     assignBucket(buckets, zeroIdx, fasGraph.node(v));
   });
 
@@ -7870,20 +7905,20 @@ function assignBucket(buckets, zeroIdx, entry) {
 }
 
 var acyclic = {
-  run: run,
-  undo: undo
+  run: run$2,
+  undo: undo$2
 };
 
-function run(g) {
+function run$2(g) {
   var fas = (g.graph().acyclicer === "greedy"
     ? greedyFas(g, weightFn(g))
     : dfsFAS(g));
-  lodash_1$1.forEach(fas, function(e) {
+  lodash_1.forEach(fas, function(e) {
     var label = g.edge(e);
     g.removeEdge(e);
     label.forwardName = e.name;
     label.reversed = true;
-    g.setEdge(e.w, e.v, label, lodash_1$1.uniqueId("rev"));
+    g.setEdge(e.w, e.v, label, lodash_1.uniqueId("rev"));
   });
 
   function weightFn(g) {
@@ -7899,13 +7934,13 @@ function dfsFAS(g) {
   var visited = {};
 
   function dfs(v) {
-    if (lodash_1$1.has(visited, v)) {
+    if (lodash_1.has(visited, v)) {
       return;
     }
     visited[v] = true;
     stack[v] = true;
-    lodash_1$1.forEach(g.outEdges(v), function(e) {
-      if (lodash_1$1.has(stack, e.w)) {
+    lodash_1.forEach(g.outEdges(v), function(e) {
+      if (lodash_1.has(stack, e.w)) {
         fas.push(e);
       } else {
         dfs(e.w);
@@ -7914,12 +7949,12 @@ function dfsFAS(g) {
     delete stack[v];
   }
 
-  lodash_1$1.forEach(g.nodes(), dfs);
+  lodash_1.forEach(g.nodes(), dfs);
   return fas;
 }
 
-function undo(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+function undo$2(g) {
+  lodash_1.forEach(g.edges(), function(e) {
     var label = g.edge(e);
     if (label.reversed) {
       g.removeEdge(e);
@@ -7935,19 +7970,19 @@ function undo(g) {
 /* eslint "no-console": off */
 
 
-var Graph$2 = graphlib_1.Graph;
+var Graph$6 = graphlib_1.Graph;
 
-var util = {
+var util$1 = {
   addDummyNode: addDummyNode,
-  simplify: simplify,
+  simplify: simplify$1,
   asNonCompoundGraph: asNonCompoundGraph,
   successorWeights: successorWeights,
   predecessorWeights: predecessorWeights,
   intersectRect: intersectRect,
   buildLayerMatrix: buildLayerMatrix,
-  normalizeRanks: normalizeRanks,
-  removeEmptyRanks: removeEmptyRanks,
-  addBorderNode: addBorderNode,
+  normalizeRanks: normalizeRanks$1,
+  removeEmptyRanks: removeEmptyRanks$1,
+  addBorderNode: addBorderNode$1,
   maxRank: maxRank,
   partition: partition,
   time: time,
@@ -7960,7 +7995,7 @@ var util = {
 function addDummyNode(g, type, attrs, name) {
   var v;
   do {
-    v = lodash_1$1.uniqueId(name);
+    v = lodash_1.uniqueId(name);
   } while (g.hasNode(v));
 
   attrs.dummy = type;
@@ -7972,10 +8007,10 @@ function addDummyNode(g, type, attrs, name) {
  * Returns a new graph with only simple edges. Handles aggregation of data
  * associated with multi-edges.
  */
-function simplify(g) {
-  var simplified = new Graph$2().setGraph(g.graph());
-  lodash_1$1.forEach(g.nodes(), function(v) { simplified.setNode(v, g.node(v)); });
-  lodash_1$1.forEach(g.edges(), function(e) {
+function simplify$1(g) {
+  var simplified = new Graph$6().setGraph(g.graph());
+  lodash_1.forEach(g.nodes(), function(v) { simplified.setNode(v, g.node(v)); });
+  lodash_1.forEach(g.edges(), function(e) {
     var simpleLabel = simplified.edge(e.v, e.w) || { weight: 0, minlen: 1 };
     var label = g.edge(e);
     simplified.setEdge(e.v, e.w, {
@@ -7987,38 +8022,38 @@ function simplify(g) {
 }
 
 function asNonCompoundGraph(g) {
-  var simplified = new Graph$2({ multigraph: g.isMultigraph() }).setGraph(g.graph());
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  var simplified = new Graph$6({ multigraph: g.isMultigraph() }).setGraph(g.graph());
+  lodash_1.forEach(g.nodes(), function(v) {
     if (!g.children(v).length) {
       simplified.setNode(v, g.node(v));
     }
   });
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     simplified.setEdge(e, g.edge(e));
   });
   return simplified;
 }
 
 function successorWeights(g) {
-  var weightMap = lodash_1$1.map(g.nodes(), function(v) {
+  var weightMap = lodash_1.map(g.nodes(), function(v) {
     var sucs = {};
-    lodash_1$1.forEach(g.outEdges(v), function(e) {
+    lodash_1.forEach(g.outEdges(v), function(e) {
       sucs[e.w] = (sucs[e.w] || 0) + g.edge(e).weight;
     });
     return sucs;
   });
-  return lodash_1$1.zipObject(g.nodes(), weightMap);
+  return lodash_1.zipObject(g.nodes(), weightMap);
 }
 
 function predecessorWeights(g) {
-  var weightMap = lodash_1$1.map(g.nodes(), function(v) {
+  var weightMap = lodash_1.map(g.nodes(), function(v) {
     var preds = {};
-    lodash_1$1.forEach(g.inEdges(v), function(e) {
+    lodash_1.forEach(g.inEdges(v), function(e) {
       preds[e.v] = (preds[e.v] || 0) + g.edge(e).weight;
     });
     return preds;
   });
-  return lodash_1$1.zipObject(g.nodes(), weightMap);
+  return lodash_1.zipObject(g.nodes(), weightMap);
 }
 
 /*
@@ -8065,11 +8100,11 @@ function intersectRect(rect, point) {
  * function will produce a matrix with the ids of each node.
  */
 function buildLayerMatrix(g) {
-  var layering = lodash_1$1.map(lodash_1$1.range(maxRank(g) + 1), function() { return []; });
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  var layering = lodash_1.map(lodash_1.range(maxRank(g) + 1), function() { return []; });
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
     var rank = node.rank;
-    if (!lodash_1$1.isUndefined(rank)) {
+    if (!lodash_1.isUndefined(rank)) {
       layering[rank][node.order] = v;
     }
   });
@@ -8080,22 +8115,22 @@ function buildLayerMatrix(g) {
  * Adjusts the ranks for all nodes in the graph such that all nodes v have
  * rank(v) >= 0 and at least one node w has rank(w) = 0.
  */
-function normalizeRanks(g) {
-  var min = lodash_1$1.min(lodash_1$1.map(g.nodes(), function(v) { return g.node(v).rank; }));
-  lodash_1$1.forEach(g.nodes(), function(v) {
+function normalizeRanks$1(g) {
+  var min = lodash_1.min(lodash_1.map(g.nodes(), function(v) { return g.node(v).rank; }));
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
-    if (lodash_1$1.has(node, "rank")) {
+    if (lodash_1.has(node, "rank")) {
       node.rank -= min;
     }
   });
 }
 
-function removeEmptyRanks(g) {
+function removeEmptyRanks$1(g) {
   // Ranks may not start at 0, so we need to offset them
-  var offset = lodash_1$1.min(lodash_1$1.map(g.nodes(), function(v) { return g.node(v).rank; }));
+  var offset = lodash_1.min(lodash_1.map(g.nodes(), function(v) { return g.node(v).rank; }));
 
   var layers = [];
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var rank = g.node(v).rank - offset;
     if (!layers[rank]) {
       layers[rank] = [];
@@ -8105,16 +8140,16 @@ function removeEmptyRanks(g) {
 
   var delta = 0;
   var nodeRankFactor = g.graph().nodeRankFactor;
-  lodash_1$1.forEach(layers, function(vs, i) {
-    if (lodash_1$1.isUndefined(vs) && i % nodeRankFactor !== 0) {
+  lodash_1.forEach(layers, function(vs, i) {
+    if (lodash_1.isUndefined(vs) && i % nodeRankFactor !== 0) {
       --delta;
     } else if (delta) {
-      lodash_1$1.forEach(vs, function(v) { g.node(v).rank += delta; });
+      lodash_1.forEach(vs, function(v) { g.node(v).rank += delta; });
     }
   });
 }
 
-function addBorderNode(g, prefix, rank, order) {
+function addBorderNode$1(g, prefix, rank, order) {
   var node = {
     width: 0,
     height: 0
@@ -8127,9 +8162,9 @@ function addBorderNode(g, prefix, rank, order) {
 }
 
 function maxRank(g) {
-  return lodash_1$1.max(lodash_1$1.map(g.nodes(), function(v) {
+  return lodash_1.max(lodash_1.map(g.nodes(), function(v) {
     var rank = g.node(v).rank;
-    if (!lodash_1$1.isUndefined(rank)) {
+    if (!lodash_1.isUndefined(rank)) {
       return rank;
     }
   }));
@@ -8142,7 +8177,7 @@ function maxRank(g) {
  */
 function partition(collection, fn) {
   var result = { lhs: [], rhs: [] };
-  lodash_1$1.forEach(collection, function(value) {
+  lodash_1.forEach(collection, function(value) {
     if (fn(value)) {
       result.lhs.push(value);
     } else {
@@ -8157,11 +8192,11 @@ function partition(collection, fn) {
  * time it takes to execute the function.
  */
 function time(name, fn) {
-  var start = lodash_1$1.now();
+  var start = lodash_1.now();
   try {
     return fn();
   } finally {
-    console.log(name + " time: " + (lodash_1$1.now() - start) + "ms");
+    console.log(name + " time: " + (lodash_1.now() - start) + "ms");
   }
 }
 
@@ -8192,7 +8227,7 @@ var normalize = {
  */
 function run$1(g) {
   g.graph().dummyChains = [];
-  lodash_1$1.forEach(g.edges(), function(edge) { normalizeEdge(g, edge); });
+  lodash_1.forEach(g.edges(), function(edge) { normalizeEdge(g, edge); });
 }
 
 function normalizeEdge(g, e) {
@@ -8216,7 +8251,7 @@ function normalizeEdge(g, e) {
       edgeLabel: edgeLabel, edgeObj: e,
       rank: vRank
     };
-    dummy = util.addDummyNode(g, "edge", attrs, "_d");
+    dummy = util$1.addDummyNode(g, "edge", attrs, "_d");
     if (vRank === labelRank) {
       attrs.width = edgeLabel.width;
       attrs.height = edgeLabel.height;
@@ -8234,7 +8269,7 @@ function normalizeEdge(g, e) {
 }
 
 function undo$1(g) {
-  lodash_1$1.forEach(g.graph().dummyChains, function(v) {
+  lodash_1.forEach(g.graph().dummyChains, function(v) {
     var node = g.node(v);
     var origLabel = node.edgeLabel;
     var w;
@@ -8255,9 +8290,9 @@ function undo$1(g) {
   });
 }
 
-var util$1 = {
-  longestPath: longestPath,
-  slack: slack
+var util = {
+  longestPath: longestPath$1,
+  slack: slack$2
 };
 
 /*
@@ -8281,17 +8316,17 @@ var util$1 = {
  *
  *    1. Each node will be assign an (unnormalized) "rank" property.
  */
-function longestPath(g) {
+function longestPath$1(g) {
   var visited = {};
 
   function dfs(v) {
     var label = g.node(v);
-    if (lodash_1$1.has(visited, v)) {
+    if (lodash_1.has(visited, v)) {
       return label.rank;
     }
     visited[v] = true;
 
-    var rank = lodash_1$1.min(lodash_1$1.map(g.outEdges(v), function(e) {
+    var rank = lodash_1.min(lodash_1.map(g.outEdges(v), function(e) {
       return dfs(e.w) - g.edge(e).minlen;
     }));
 
@@ -8304,19 +8339,19 @@ function longestPath(g) {
     return (label.rank = rank);
   }
 
-  lodash_1$1.forEach(g.sources(), dfs);
+  lodash_1.forEach(g.sources(), dfs);
 }
 
 /*
  * Returns the amount of slack for the given edge. The slack is defined as the
  * difference between the length of the edge and its minimum length.
  */
-function slack(g, e) {
+function slack$2(g, e) {
   return g.node(e.w).rank - g.node(e.v).rank - g.edge(e).minlen;
 }
 
-var Graph$3 = graphlib_1.Graph;
-var slack$1 = util$1.slack;
+var Graph$5 = graphlib_1.Graph;
+var slack$1 = util.slack;
 
 var feasibleTree_1 = feasibleTree;
 
@@ -8346,7 +8381,7 @@ var feasibleTree_1 = feasibleTree;
  * edges.
  */
 function feasibleTree(g) {
-  var t = new Graph$3({ directed: false });
+  var t = new Graph$5({ directed: false });
 
   // Choose arbitrary node from which to start our tree
   var start = g.nodes()[0];
@@ -8369,7 +8404,7 @@ function feasibleTree(g) {
  */
 function tightTree(t, g) {
   function dfs(v) {
-    lodash_1$1.forEach(g.nodeEdges(v), function(e) {
+    lodash_1.forEach(g.nodeEdges(v), function(e) {
       var edgeV = e.v,
         w = (v === edgeV) ? e.w : edgeV;
       if (!t.hasNode(w) && !slack$1(g, e)) {
@@ -8380,7 +8415,7 @@ function tightTree(t, g) {
     });
   }
 
-  lodash_1$1.forEach(t.nodes(), dfs);
+  lodash_1.forEach(t.nodes(), dfs);
   return t.nodeCount();
 }
 
@@ -8389,7 +8424,7 @@ function tightTree(t, g) {
  * it.
  */
 function findMinSlackEdge(t, g) {
-  return lodash_1$1.minBy(g.edges(), function(e) {
+  return lodash_1.minBy(g.edges(), function(e) {
     if (t.hasNode(e.v) !== t.hasNode(e.w)) {
       return slack$1(g, e);
     }
@@ -8397,16 +8432,16 @@ function findMinSlackEdge(t, g) {
 }
 
 function shiftRanks(t, g, delta) {
-  lodash_1$1.forEach(t.nodes(), function(v) {
+  lodash_1.forEach(t.nodes(), function(v) {
     g.node(v).rank += delta;
   });
 }
 
-var slack$2 = util$1.slack;
-var initRank = util$1.longestPath;
-var preorder$1 = graphlib_1.alg.preorder;
+var slack = util.slack;
+var initRank = util.longestPath;
+var preorder = graphlib_1.alg.preorder;
 var postorder$1 = graphlib_1.alg.postorder;
-var simplify$1 = util.simplify;
+var simplify = util$1.simplify;
 
 var networkSimplex_1 = networkSimplex;
 
@@ -8452,7 +8487,7 @@ networkSimplex.exchangeEdges = exchangeEdges;
  * structure of the overall algorithm.
  */
 function networkSimplex(g) {
-  g = simplify$1(g);
+  g = simplify(g);
   initRank(g);
   var t = feasibleTree_1(g);
   initLowLimValues(t);
@@ -8471,7 +8506,7 @@ function networkSimplex(g) {
 function initCutValues(t, g) {
   var vs = postorder$1(t, t.nodes());
   vs = vs.slice(0, vs.length - 1);
-  lodash_1$1.forEach(vs, function(v) {
+  lodash_1.forEach(vs, function(v) {
     assignCutValue(t, g, v);
   });
 }
@@ -8503,7 +8538,7 @@ function calcCutValue(t, g, child) {
 
   cutValue = graphEdge.weight;
 
-  lodash_1$1.forEach(g.nodeEdges(child), function(e) {
+  lodash_1.forEach(g.nodeEdges(child), function(e) {
     var isOutEdge = e.v === child,
       other = isOutEdge ? e.w : e.v;
 
@@ -8534,8 +8569,8 @@ function dfsAssignLowLim(tree, visited, nextLim, v, parent) {
   var label = tree.node(v);
 
   visited[v] = true;
-  lodash_1$1.forEach(tree.neighbors(v), function(w) {
-    if (!lodash_1$1.has(visited, w)) {
+  lodash_1.forEach(tree.neighbors(v), function(w) {
+    if (!lodash_1.has(visited, w)) {
       nextLim = dfsAssignLowLim(tree, visited, nextLim, w, v);
     }
   });
@@ -8553,7 +8588,7 @@ function dfsAssignLowLim(tree, visited, nextLim, v, parent) {
 }
 
 function leaveEdge(tree) {
-  return lodash_1$1.find(tree.edges(), function(e) {
+  return lodash_1.find(tree.edges(), function(e) {
     return tree.edge(e).cutvalue < 0;
   });
 }
@@ -8582,12 +8617,12 @@ function enterEdge(t, g, edge) {
     flip = true;
   }
 
-  var candidates = lodash_1$1.filter(g.edges(), function(edge) {
+  var candidates = lodash_1.filter(g.edges(), function(edge) {
     return flip === isDescendant(t, t.node(edge.v), tailLabel) &&
            flip !== isDescendant(t, t.node(edge.w), tailLabel);
   });
 
-  return lodash_1$1.minBy(candidates, function(edge) { return slack$2(g, edge); });
+  return lodash_1.minBy(candidates, function(edge) { return slack(g, edge); });
 }
 
 function exchangeEdges(t, g, e, f) {
@@ -8601,10 +8636,10 @@ function exchangeEdges(t, g, e, f) {
 }
 
 function updateRanks(t, g) {
-  var root = lodash_1$1.find(t.nodes(), function(v) { return !g.node(v).parent; });
-  var vs = preorder$1(t, root);
+  var root = lodash_1.find(t.nodes(), function(v) { return !g.node(v).parent; });
+  var vs = preorder(t, root);
   vs = vs.slice(1);
-  lodash_1$1.forEach(vs, function(v) {
+  lodash_1.forEach(vs, function(v) {
     var parent = t.node(v).parent,
       edge = g.edge(v, parent),
       flipped = false;
@@ -8633,7 +8668,7 @@ function isDescendant(tree, vLabel, rootLabel) {
   return rootLabel.low <= vLabel.lim && vLabel.lim <= rootLabel.lim;
 }
 
-var longestPath$1 = util$1.longestPath;
+var longestPath = util.longestPath;
 
 
 
@@ -8668,10 +8703,10 @@ function rank(g) {
 }
 
 // A fast and simple ranker, but results are far from optimal.
-var longestPathRanker = longestPath$1;
+var longestPathRanker = longestPath;
 
 function tightTreeRanker(g) {
-  longestPath$1(g);
+  longestPath(g);
   feasibleTree_1(g);
 }
 
@@ -8682,9 +8717,9 @@ function networkSimplexRanker(g) {
 var parentDummyChains_1 = parentDummyChains;
 
 function parentDummyChains(g) {
-  var postorderNums = postorder$2(g);
+  var postorderNums = postorder(g);
 
-  lodash_1$1.forEach(g.graph().dummyChains, function(v) {
+  lodash_1.forEach(g.graph().dummyChains, function(v) {
     var node = g.node(v);
     var edgeObj = node.edgeObj;
     var pathData = findPath(g, postorderNums, edgeObj.v, edgeObj.w);
@@ -8750,22 +8785,22 @@ function findPath(g, postorderNums, v, w) {
   return { path: vPath.concat(wPath.reverse()), lca: lca };
 }
 
-function postorder$2(g) {
+function postorder(g) {
   var result = {};
   var lim = 0;
 
   function dfs(v) {
     var low = lim;
-    lodash_1$1.forEach(g.children(v), dfs);
+    lodash_1.forEach(g.children(v), dfs);
     result[v] = { low: low, lim: lim++ };
   }
-  lodash_1$1.forEach(g.children(), dfs);
+  lodash_1.forEach(g.children(), dfs);
 
   return result;
 }
 
 var nestingGraph = {
-  run: run$2,
+  run: run,
   cleanup: cleanup
 };
 
@@ -8792,23 +8827,23 @@ var nestingGraph = {
  * The nesting graph idea comes from Sander, "Layout of Compound Directed
  * Graphs."
  */
-function run$2(g) {
-  var root = util.addDummyNode(g, "root", {}, "_root");
+function run(g) {
+  var root = util$1.addDummyNode(g, "root", {}, "_root");
   var depths = treeDepths(g);
-  var height = lodash_1$1.max(lodash_1$1.values(depths)) - 1; // Note: depths is an Object not an array
+  var height = lodash_1.max(lodash_1.values(depths)) - 1; // Note: depths is an Object not an array
   var nodeSep = 2 * height + 1;
 
   g.graph().nestingRoot = root;
 
   // Multiply minlen by nodeSep to align nodes on non-border ranks.
-  lodash_1$1.forEach(g.edges(), function(e) { g.edge(e).minlen *= nodeSep; });
+  lodash_1.forEach(g.edges(), function(e) { g.edge(e).minlen *= nodeSep; });
 
   // Calculate a weight that is sufficient to keep subgraphs vertically compact
   var weight = sumWeights(g) + 1;
 
   // Create border nodes and link them up
-  lodash_1$1.forEach(g.children(), function(child) {
-    dfs$1(g, root, nodeSep, weight, height, depths, child);
+  lodash_1.forEach(g.children(), function(child) {
+    dfs(g, root, nodeSep, weight, height, depths, child);
   });
 
   // Save the multiplier for node layers for later removal of empty border
@@ -8816,7 +8851,7 @@ function run$2(g) {
   g.graph().nodeRankFactor = nodeSep;
 }
 
-function dfs$1(g, root, nodeSep, weight, height, depths, v) {
+function dfs(g, root, nodeSep, weight, height, depths, v) {
   var children = g.children(v);
   if (!children.length) {
     if (v !== root) {
@@ -8825,8 +8860,8 @@ function dfs$1(g, root, nodeSep, weight, height, depths, v) {
     return;
   }
 
-  var top = util.addBorderNode(g, "_bt");
-  var bottom = util.addBorderNode(g, "_bb");
+  var top = util$1.addBorderNode(g, "_bt");
+  var bottom = util$1.addBorderNode(g, "_bb");
   var label = g.node(v);
 
   g.setParent(top, v);
@@ -8834,8 +8869,8 @@ function dfs$1(g, root, nodeSep, weight, height, depths, v) {
   g.setParent(bottom, v);
   label.borderBottom = bottom;
 
-  lodash_1$1.forEach(children, function(child) {
-    dfs$1(g, root, nodeSep, weight, height, depths, child);
+  lodash_1.forEach(children, function(child) {
+    dfs(g, root, nodeSep, weight, height, depths, child);
 
     var childNode = g.node(child);
     var childTop = childNode.borderTop ? childNode.borderTop : child;
@@ -8866,18 +8901,18 @@ function treeDepths(g) {
   function dfs(v, depth) {
     var children = g.children(v);
     if (children && children.length) {
-      lodash_1$1.forEach(children, function(child) {
+      lodash_1.forEach(children, function(child) {
         dfs(child, depth + 1);
       });
     }
     depths[v] = depth;
   }
-  lodash_1$1.forEach(g.children(), function(v) { dfs(v, 1); });
+  lodash_1.forEach(g.children(), function(v) { dfs(v, 1); });
   return depths;
 }
 
 function sumWeights(g) {
-  return lodash_1$1.reduce(g.edges(), function(acc, e) {
+  return lodash_1.reduce(g.edges(), function(acc, e) {
     return acc + g.edge(e).weight;
   }, 0);
 }
@@ -8886,7 +8921,7 @@ function cleanup(g) {
   var graphLabel = g.graph();
   g.removeNode(graphLabel.nestingRoot);
   delete graphLabel.nestingRoot;
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
     if (edge.nestingEdge) {
       g.removeEdge(e);
@@ -8901,28 +8936,28 @@ function addBorderSegments(g) {
     var children = g.children(v);
     var node = g.node(v);
     if (children.length) {
-      lodash_1$1.forEach(children, dfs);
+      lodash_1.forEach(children, dfs);
     }
 
-    if (lodash_1$1.has(node, "minRank")) {
+    if (lodash_1.has(node, "minRank")) {
       node.borderLeft = [];
       node.borderRight = [];
       for (var rank = node.minRank, maxRank = node.maxRank + 1;
         rank < maxRank;
         ++rank) {
-        addBorderNode$1(g, "borderLeft", "_bl", v, node, rank);
-        addBorderNode$1(g, "borderRight", "_br", v, node, rank);
+        addBorderNode(g, "borderLeft", "_bl", v, node, rank);
+        addBorderNode(g, "borderRight", "_br", v, node, rank);
       }
     }
   }
 
-  lodash_1$1.forEach(g.children(), dfs);
+  lodash_1.forEach(g.children(), dfs);
 }
 
-function addBorderNode$1(g, prop, prefix, sg, sgNode, rank) {
+function addBorderNode(g, prop, prefix, sg, sgNode, rank) {
   var label = { width: 0, height: 0, rank: rank, borderType: prop };
   var prev = sgNode[prop][rank - 1];
-  var curr = util.addDummyNode(g, "border", label, prefix);
+  var curr = util$1.addDummyNode(g, "border", label, prefix);
   sgNode[prop][rank] = curr;
   g.setParent(curr, sg);
   if (prev) {
@@ -8932,7 +8967,7 @@ function addBorderNode$1(g, prop, prefix, sg, sgNode, rank) {
 
 var coordinateSystem = {
   adjust: adjust,
-  undo: undo$2
+  undo: undo
 };
 
 function adjust(g) {
@@ -8942,7 +8977,7 @@ function adjust(g) {
   }
 }
 
-function undo$2(g) {
+function undo(g) {
   var rankDir = g.graph().rankdir.toLowerCase();
   if (rankDir === "bt" || rankDir === "rl") {
     reverseY(g);
@@ -8955,8 +8990,8 @@ function undo$2(g) {
 }
 
 function swapWidthHeight(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) { swapWidthHeightOne(g.node(v)); });
-  lodash_1$1.forEach(g.edges(), function(e) { swapWidthHeightOne(g.edge(e)); });
+  lodash_1.forEach(g.nodes(), function(v) { swapWidthHeightOne(g.node(v)); });
+  lodash_1.forEach(g.edges(), function(e) { swapWidthHeightOne(g.edge(e)); });
 }
 
 function swapWidthHeightOne(attrs) {
@@ -8966,12 +9001,12 @@ function swapWidthHeightOne(attrs) {
 }
 
 function reverseY(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) { reverseYOne(g.node(v)); });
+  lodash_1.forEach(g.nodes(), function(v) { reverseYOne(g.node(v)); });
 
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
-    lodash_1$1.forEach(edge.points, reverseYOne);
-    if (lodash_1$1.has(edge, "y")) {
+    lodash_1.forEach(edge.points, reverseYOne);
+    if (lodash_1.has(edge, "y")) {
       reverseYOne(edge);
     }
   });
@@ -8982,12 +9017,12 @@ function reverseYOne(attrs) {
 }
 
 function swapXY(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) { swapXYOne(g.node(v)); });
+  lodash_1.forEach(g.nodes(), function(v) { swapXYOne(g.node(v)); });
 
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
-    lodash_1$1.forEach(edge.points, swapXYOne);
-    if (lodash_1$1.has(edge, "x")) {
+    lodash_1.forEach(edge.points, swapXYOne);
+    if (lodash_1.has(edge, "x")) {
       swapXYOne(edge);
     }
   });
@@ -9014,22 +9049,22 @@ var initOrder_1 = initOrder;
  */
 function initOrder(g) {
   var visited = {};
-  var simpleNodes = lodash_1$1.filter(g.nodes(), function(v) {
+  var simpleNodes = lodash_1.filter(g.nodes(), function(v) {
     return !g.children(v).length;
   });
-  var maxRank = lodash_1$1.max(lodash_1$1.map(simpleNodes, function(v) { return g.node(v).rank; }));
-  var layers = lodash_1$1.map(lodash_1$1.range(maxRank + 1), function() { return []; });
+  var maxRank = lodash_1.max(lodash_1.map(simpleNodes, function(v) { return g.node(v).rank; }));
+  var layers = lodash_1.map(lodash_1.range(maxRank + 1), function() { return []; });
 
   function dfs(v) {
-    if (lodash_1$1.has(visited, v)) return;
+    if (lodash_1.has(visited, v)) return;
     visited[v] = true;
     var node = g.node(v);
     layers[node.rank].push(v);
-    lodash_1$1.forEach(g.successors(v), dfs);
+    lodash_1.forEach(g.successors(v), dfs);
   }
 
-  var orderedVs = lodash_1$1.sortBy(simpleNodes, function(v) { return g.node(v).rank; });
-  lodash_1$1.forEach(orderedVs, dfs);
+  var orderedVs = lodash_1.sortBy(simpleNodes, function(v) { return g.node(v).rank; });
+  lodash_1.forEach(orderedVs, dfs);
 
   return layers;
 }
@@ -9064,10 +9099,10 @@ function twoLayerCrossCount(g, northLayer, southLayer) {
   // Sort all of the edges between the north and south layers by their position
   // in the north layer and then the south. Map these edges to the position of
   // their head in the south layer.
-  var southPos = lodash_1$1.zipObject(southLayer,
-    lodash_1$1.map(southLayer, function (v, i) { return i; }));
-  var southEntries = lodash_1$1.flatten(lodash_1$1.map(northLayer, function(v) {
-    return lodash_1$1.sortBy(lodash_1$1.map(g.outEdges(v), function(e) {
+  var southPos = lodash_1.zipObject(southLayer,
+    lodash_1.map(southLayer, function (v, i) { return i; }));
+  var southEntries = lodash_1.flatten(lodash_1.map(northLayer, function(v) {
+    return lodash_1.sortBy(lodash_1.map(g.outEdges(v), function(e) {
       return { pos: southPos[e.w], weight: g.edge(e).weight };
     }), "pos");
   }), true);
@@ -9077,11 +9112,11 @@ function twoLayerCrossCount(g, northLayer, southLayer) {
   while (firstIndex < southLayer.length) firstIndex <<= 1;
   var treeSize = 2 * firstIndex - 1;
   firstIndex -= 1;
-  var tree = lodash_1$1.map(new Array(treeSize), function() { return 0; });
+  var tree = lodash_1.map(new Array(treeSize), function() { return 0; });
 
   // Calculate the weighted crossings
   var cc = 0;
-  lodash_1$1.forEach(southEntries.forEach(function(entry) {
+  lodash_1.forEach(southEntries.forEach(function(entry) {
     var index = entry.pos + firstIndex;
     tree[index] += entry.weight;
     var weightSum = 0;
@@ -9101,12 +9136,12 @@ function twoLayerCrossCount(g, northLayer, southLayer) {
 var barycenter_1 = barycenter;
 
 function barycenter(g, movable) {
-  return lodash_1$1.map(movable, function(v) {
+  return lodash_1.map(movable, function(v) {
     var inV = g.inEdges(v);
     if (!inV.length) {
       return { v: v };
     } else {
-      var result = lodash_1$1.reduce(inV, function(acc, e) {
+      var result = lodash_1.reduce(inV, function(acc, e) {
         var edge = g.edge(e),
           nodeU = g.node(e.v);
         return {
@@ -9153,7 +9188,7 @@ var resolveConflicts_1 = resolveConflicts;
  */
 function resolveConflicts(entries, cg) {
   var mappedEntries = {};
-  lodash_1$1.forEach(entries, function(entry, i) {
+  lodash_1.forEach(entries, function(entry, i) {
     var tmp = mappedEntries[entry.v] = {
       indegree: 0,
       "in": [],
@@ -9161,22 +9196,22 @@ function resolveConflicts(entries, cg) {
       vs: [entry.v],
       i: i
     };
-    if (!lodash_1$1.isUndefined(entry.barycenter)) {
+    if (!lodash_1.isUndefined(entry.barycenter)) {
       tmp.barycenter = entry.barycenter;
       tmp.weight = entry.weight;
     }
   });
 
-  lodash_1$1.forEach(cg.edges(), function(e) {
+  lodash_1.forEach(cg.edges(), function(e) {
     var entryV = mappedEntries[e.v];
     var entryW = mappedEntries[e.w];
-    if (!lodash_1$1.isUndefined(entryV) && !lodash_1$1.isUndefined(entryW)) {
+    if (!lodash_1.isUndefined(entryV) && !lodash_1.isUndefined(entryW)) {
       entryW.indegree++;
       entryV.out.push(mappedEntries[e.w]);
     }
   });
 
-  var sourceSet = lodash_1$1.filter(mappedEntries, function(entry) {
+  var sourceSet = lodash_1.filter(mappedEntries, function(entry) {
     return !entry.indegree;
   });
 
@@ -9191,8 +9226,8 @@ function doResolveConflicts(sourceSet) {
       if (uEntry.merged) {
         return;
       }
-      if (lodash_1$1.isUndefined(uEntry.barycenter) ||
-          lodash_1$1.isUndefined(vEntry.barycenter) ||
+      if (lodash_1.isUndefined(uEntry.barycenter) ||
+          lodash_1.isUndefined(vEntry.barycenter) ||
           uEntry.barycenter >= vEntry.barycenter) {
         mergeEntries(vEntry, uEntry);
       }
@@ -9211,13 +9246,13 @@ function doResolveConflicts(sourceSet) {
   while (sourceSet.length) {
     var entry = sourceSet.pop();
     entries.push(entry);
-    lodash_1$1.forEach(entry["in"].reverse(), handleIn(entry));
-    lodash_1$1.forEach(entry.out, handleOut(entry));
+    lodash_1.forEach(entry["in"].reverse(), handleIn(entry));
+    lodash_1.forEach(entry.out, handleOut(entry));
   }
 
-  return lodash_1$1.map(lodash_1$1.filter(entries, function(entry) { return !entry.merged; }),
+  return lodash_1.map(lodash_1.filter(entries, function(entry) { return !entry.merged; }),
     function(entry) {
-      return lodash_1$1.pick(entry, ["vs", "i", "barycenter", "weight"]);
+      return lodash_1.pick(entry, ["vs", "i", "barycenter", "weight"]);
     });
 
 }
@@ -9246,11 +9281,11 @@ function mergeEntries(target, source) {
 var sort_1 = sort;
 
 function sort(entries, biasRight) {
-  var parts = util.partition(entries, function(entry) {
-    return lodash_1$1.has(entry, "barycenter");
+  var parts = util$1.partition(entries, function(entry) {
+    return lodash_1.has(entry, "barycenter");
   });
   var sortable = parts.lhs,
-    unsortable = lodash_1$1.sortBy(parts.rhs, function(entry) { return -entry.i; }),
+    unsortable = lodash_1.sortBy(parts.rhs, function(entry) { return -entry.i; }),
     vs = [],
     sum = 0,
     weight = 0,
@@ -9260,7 +9295,7 @@ function sort(entries, biasRight) {
 
   vsIndex = consumeUnsortable(vs, unsortable, vsIndex);
 
-  lodash_1$1.forEach(sortable, function (entry) {
+  lodash_1.forEach(sortable, function (entry) {
     vsIndex += entry.vs.length;
     vs.push(entry.vs);
     sum += entry.barycenter * entry.weight;
@@ -9268,7 +9303,7 @@ function sort(entries, biasRight) {
     vsIndex = consumeUnsortable(vs, unsortable, vsIndex);
   });
 
-  var result = { vs: lodash_1$1.flatten(vs, true) };
+  var result = { vs: lodash_1.flatten(vs, true) };
   if (weight) {
     result.barycenter = sum / weight;
     result.weight = weight;
@@ -9278,7 +9313,7 @@ function sort(entries, biasRight) {
 
 function consumeUnsortable(vs, unsortable, index) {
   var last;
-  while (unsortable.length && (last = lodash_1$1.last(unsortable)).i <= index) {
+  while (unsortable.length && (last = lodash_1.last(unsortable)).i <= index) {
     unsortable.pop();
     vs.push(last.vs);
     index++;
@@ -9308,17 +9343,17 @@ function sortSubgraph(g, v, cg, biasRight) {
   var subgraphs = {};
 
   if (bl) {
-    movable = lodash_1$1.filter(movable, function(w) {
+    movable = lodash_1.filter(movable, function(w) {
       return w !== bl && w !== br;
     });
   }
 
   var barycenters = barycenter_1(g, movable);
-  lodash_1$1.forEach(barycenters, function(entry) {
+  lodash_1.forEach(barycenters, function(entry) {
     if (g.children(entry.v).length) {
       var subgraphResult = sortSubgraph(g, entry.v, cg, biasRight);
       subgraphs[entry.v] = subgraphResult;
-      if (lodash_1$1.has(subgraphResult, "barycenter")) {
+      if (lodash_1.has(subgraphResult, "barycenter")) {
         mergeBarycenters(entry, subgraphResult);
       }
     }
@@ -9330,11 +9365,11 @@ function sortSubgraph(g, v, cg, biasRight) {
   var result = sort_1(entries, biasRight);
 
   if (bl) {
-    result.vs = lodash_1$1.flatten([bl, result.vs, br], true);
+    result.vs = lodash_1.flatten([bl, result.vs, br], true);
     if (g.predecessors(bl).length) {
       var blPred = g.node(g.predecessors(bl)[0]),
         brPred = g.node(g.predecessors(br)[0]);
-      if (!lodash_1$1.has(result, "barycenter")) {
+      if (!lodash_1.has(result, "barycenter")) {
         result.barycenter = 0;
         result.weight = 0;
       }
@@ -9348,8 +9383,8 @@ function sortSubgraph(g, v, cg, biasRight) {
 }
 
 function expandSubgraphs(entries, subgraphs) {
-  lodash_1$1.forEach(entries, function(entry) {
-    entry.vs = lodash_1$1.flatten(entry.vs.map(function(v) {
+  lodash_1.forEach(entries, function(entry) {
+    entry.vs = lodash_1.flatten(entry.vs.map(function(v) {
       if (subgraphs[v]) {
         return subgraphs[v].vs;
       }
@@ -9359,7 +9394,7 @@ function expandSubgraphs(entries, subgraphs) {
 }
 
 function mergeBarycenters(target, other) {
-  if (!lodash_1$1.isUndefined(target.barycenter)) {
+  if (!lodash_1.isUndefined(target.barycenter)) {
     target.barycenter = (target.barycenter * target.weight +
                          other.barycenter * other.weight) /
                         (target.weight + other.weight);
@@ -9409,7 +9444,7 @@ function buildLayerGraph(g, rank, relationship) {
     result = new Graph$4({ compound: true }).setGraph({ root: root })
       .setDefaultNodeLabel(function(v) { return g.node(v); });
 
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v),
       parent = g.parent(v);
 
@@ -9418,14 +9453,14 @@ function buildLayerGraph(g, rank, relationship) {
       result.setParent(v, parent || root);
 
       // This assumes we have only short edges!
-      lodash_1$1.forEach(g[relationship](v), function(e) {
+      lodash_1.forEach(g[relationship](v), function(e) {
         var u = e.v === v ? e.w : e.v,
           edge = result.edge(u, v),
-          weight = !lodash_1$1.isUndefined(edge) ? edge.weight : 0;
+          weight = !lodash_1.isUndefined(edge) ? edge.weight : 0;
         result.setEdge(u, v, { weight: g.edge(e).weight + weight });
       });
 
-      if (lodash_1$1.has(node, "minRank")) {
+      if (lodash_1.has(node, "minRank")) {
         result.setNode(v, {
           borderLeft: node.borderLeft[rank],
           borderRight: node.borderRight[rank]
@@ -9439,7 +9474,7 @@ function buildLayerGraph(g, rank, relationship) {
 
 function createRootNode(g) {
   var v;
-  while (g.hasNode((v = lodash_1$1.uniqueId("_root"))));
+  while (g.hasNode((v = lodash_1.uniqueId("_root"))));
   return v;
 }
 
@@ -9449,7 +9484,7 @@ function addSubgraphConstraints(g, cg, vs) {
   var prev = {},
     rootPrev;
 
-  lodash_1$1.forEach(vs, function(v) {
+  lodash_1.forEach(vs, function(v) {
     var child = g.parent(v),
       parent,
       prevChild;
@@ -9495,7 +9530,7 @@ function addSubgraphConstraints(g, cg, vs) {
   */
 }
 
-var Graph$5 = graphlib_1.Graph;
+var Graph$3 = graphlib_1.Graph;
 
 
 var order_1 = order;
@@ -9516,9 +9551,9 @@ var order_1 = order;
  *       algorithm.
  */
 function order(g) {
-  var maxRank = util.maxRank(g),
-    downLayerGraphs = buildLayerGraphs(g, lodash_1$1.range(1, maxRank + 1), "inEdges"),
-    upLayerGraphs = buildLayerGraphs(g, lodash_1$1.range(maxRank - 1, -1, -1), "outEdges");
+  var maxRank = util$1.maxRank(g),
+    downLayerGraphs = buildLayerGraphs(g, lodash_1.range(1, maxRank + 1), "inEdges"),
+    upLayerGraphs = buildLayerGraphs(g, lodash_1.range(maxRank - 1, -1, -1), "outEdges");
 
   var layering = initOrder_1(g);
   assignOrder(g, layering);
@@ -9529,11 +9564,11 @@ function order(g) {
   for (var i = 0, lastBest = 0; lastBest < 4; ++i, ++lastBest) {
     sweepLayerGraphs(i % 2 ? downLayerGraphs : upLayerGraphs, i % 4 >= 2);
 
-    layering = util.buildLayerMatrix(g);
+    layering = util$1.buildLayerMatrix(g);
     var cc = crossCount_1(g, layering);
     if (cc < bestCC) {
       lastBest = 0;
-      best = lodash_1$1.cloneDeep(layering);
+      best = lodash_1.cloneDeep(layering);
       bestCC = cc;
     }
   }
@@ -9542,17 +9577,17 @@ function order(g) {
 }
 
 function buildLayerGraphs(g, ranks, relationship) {
-  return lodash_1$1.map(ranks, function(rank) {
+  return lodash_1.map(ranks, function(rank) {
     return buildLayerGraph_1(g, rank, relationship);
   });
 }
 
 function sweepLayerGraphs(layerGraphs, biasRight) {
-  var cg = new Graph$5();
-  lodash_1$1.forEach(layerGraphs, function(lg) {
+  var cg = new Graph$3();
+  lodash_1.forEach(layerGraphs, function(lg) {
     var root = lg.graph().root;
     var sorted = sortSubgraph_1(lg, root, cg, biasRight);
-    lodash_1$1.forEach(sorted.vs, function(v, i) {
+    lodash_1.forEach(sorted.vs, function(v, i) {
       lg.node(v).order = i;
     });
     addSubgraphConstraints_1(lg, cg, sorted.vs);
@@ -9560,14 +9595,14 @@ function sweepLayerGraphs(layerGraphs, biasRight) {
 }
 
 function assignOrder(g, layering) {
-  lodash_1$1.forEach(layering, function(layer) {
-    lodash_1$1.forEach(layer, function(v, i) {
+  lodash_1.forEach(layering, function(layer) {
+    lodash_1.forEach(layer, function(v, i) {
       g.node(v).order = i;
     });
   });
 }
 
-var Graph$6 = graphlib_1.Graph;
+var Graph$2 = graphlib_1.Graph;
 
 
 /*
@@ -9576,7 +9611,7 @@ var Graph$6 = graphlib_1.Graph;
  */
 
 var bk = {
-  positionX: positionX,
+  positionX: positionX$1,
   findType1Conflicts: findType1Conflicts,
   findType2Conflicts: findType2Conflicts,
   addConflict: addConflict,
@@ -9617,15 +9652,15 @@ function findType1Conflicts(g, layering) {
       // segment.
       scanPos = 0,
       prevLayerLength = prevLayer.length,
-      lastNode = lodash_1$1.last(layer);
+      lastNode = lodash_1.last(layer);
 
-    lodash_1$1.forEach(layer, function(v, i) {
+    lodash_1.forEach(layer, function(v, i) {
       var w = findOtherInnerSegmentNode(g, v),
         k1 = w ? g.node(w).order : prevLayerLength;
 
       if (w || v === lastNode) {
-        lodash_1$1.forEach(layer.slice(scanPos, i +1), function(scanNode) {
-          lodash_1$1.forEach(g.predecessors(scanNode), function(u) {
+        lodash_1.forEach(layer.slice(scanPos, i +1), function(scanNode) {
+          lodash_1.forEach(g.predecessors(scanNode), function(u) {
             var uLabel = g.node(u),
               uPos = uLabel.order;
             if ((uPos < k0 || k1 < uPos) &&
@@ -9642,7 +9677,7 @@ function findType1Conflicts(g, layering) {
     return layer;
   }
 
-  lodash_1$1.reduce(layering, visitLayer);
+  lodash_1.reduce(layering, visitLayer);
   return conflicts;
 }
 
@@ -9651,10 +9686,10 @@ function findType2Conflicts(g, layering) {
 
   function scan(south, southPos, southEnd, prevNorthBorder, nextNorthBorder) {
     var v;
-    lodash_1$1.forEach(lodash_1$1.range(southPos, southEnd), function(i) {
+    lodash_1.forEach(lodash_1.range(southPos, southEnd), function(i) {
       v = south[i];
       if (g.node(v).dummy) {
-        lodash_1$1.forEach(g.predecessors(v), function(u) {
+        lodash_1.forEach(g.predecessors(v), function(u) {
           var uNode = g.node(u);
           if (uNode.dummy &&
               (uNode.order < prevNorthBorder || uNode.order > nextNorthBorder)) {
@@ -9671,7 +9706,7 @@ function findType2Conflicts(g, layering) {
       nextNorthPos,
       southPos = 0;
 
-    lodash_1$1.forEach(south, function(v, southLookahead) {
+    lodash_1.forEach(south, function(v, southLookahead) {
       if (g.node(v).dummy === "border") {
         var predecessors = g.predecessors(v);
         if (predecessors.length) {
@@ -9687,13 +9722,13 @@ function findType2Conflicts(g, layering) {
     return south;
   }
 
-  lodash_1$1.reduce(layering, visitLayer);
+  lodash_1.reduce(layering, visitLayer);
   return conflicts;
 }
 
 function findOtherInnerSegmentNode(g, v) {
   if (g.node(v).dummy) {
-    return lodash_1$1.find(g.predecessors(v), function(u) {
+    return lodash_1.find(g.predecessors(v), function(u) {
       return g.node(u).dummy;
     });
   }
@@ -9719,7 +9754,7 @@ function hasConflict(conflicts, v, w) {
     v = w;
     w = tmp;
   }
-  return lodash_1$1.has(conflicts[v], w);
+  return lodash_1.has(conflicts[v], w);
 }
 
 /*
@@ -9738,20 +9773,20 @@ function verticalAlignment(g, layering, conflicts, neighborFn) {
   // We cache the position here based on the layering because the graph and
   // layering may be out of sync. The layering matrix is manipulated to
   // generate different extreme alignments.
-  lodash_1$1.forEach(layering, function(layer) {
-    lodash_1$1.forEach(layer, function(v, order) {
+  lodash_1.forEach(layering, function(layer) {
+    lodash_1.forEach(layer, function(v, order) {
       root[v] = v;
       align[v] = v;
       pos[v] = order;
     });
   });
 
-  lodash_1$1.forEach(layering, function(layer) {
+  lodash_1.forEach(layering, function(layer) {
     var prevIdx = -1;
-    lodash_1$1.forEach(layer, function(v) {
+    lodash_1.forEach(layer, function(v) {
       var ws = neighborFn(v);
       if (ws.length) {
-        ws = lodash_1$1.sortBy(ws, function(w) { return pos[w]; });
+        ws = lodash_1.sortBy(ws, function(w) { return pos[w]; });
         var mp = (ws.length - 1) / 2;
         for (var i = Math.floor(mp), il = Math.ceil(mp); i <= il; ++i) {
           var w = ws[i];
@@ -9820,7 +9855,7 @@ function horizontalCompaction(g, layering, root, align, reverseSep) {
   iterate(pass2, blockG.successors.bind(blockG));
 
   // Assign x coordinates to all nodes
-  lodash_1$1.forEach(align, function(v) {
+  lodash_1.forEach(align, function(v) {
     xs[v] = xs[root[v]];
   });
 
@@ -9829,13 +9864,13 @@ function horizontalCompaction(g, layering, root, align, reverseSep) {
 
 
 function buildBlockGraph(g, layering, root, reverseSep) {
-  var blockGraph = new Graph$6(),
+  var blockGraph = new Graph$2(),
     graphLabel = g.graph(),
     sepFn = sep(graphLabel.nodesep, graphLabel.edgesep, reverseSep);
 
-  lodash_1$1.forEach(layering, function(layer) {
+  lodash_1.forEach(layering, function(layer) {
     var u;
-    lodash_1$1.forEach(layer, function(v) {
+    lodash_1.forEach(layer, function(v) {
       var vRoot = root[v];
       blockGraph.setNode(vRoot);
       if (u) {
@@ -9854,11 +9889,11 @@ function buildBlockGraph(g, layering, root, reverseSep) {
  * Returns the alignment that has the smallest width of the given alignments.
  */
 function findSmallestWidthAlignment(g, xss) {
-  return lodash_1$1.minBy(lodash_1$1.values(xss), function (xs) {
+  return lodash_1.minBy(lodash_1.values(xss), function (xs) {
     var max = Number.NEGATIVE_INFINITY;
     var min = Number.POSITIVE_INFINITY;
 
-    lodash_1$1.forIn(xs, function (x, v) {
+    lodash_1.forIn(xs, function (x, v) {
       var halfWidth = width(g, v) / 2;
 
       max = Math.max(x + halfWidth, max);
@@ -9877,52 +9912,52 @@ function findSmallestWidthAlignment(g, xss) {
  * coordinate of the smallest width alignment.
  */
 function alignCoordinates(xss, alignTo) {
-  var alignToVals = lodash_1$1.values(alignTo),
-    alignToMin = lodash_1$1.min(alignToVals),
-    alignToMax = lodash_1$1.max(alignToVals);
+  var alignToVals = lodash_1.values(alignTo),
+    alignToMin = lodash_1.min(alignToVals),
+    alignToMax = lodash_1.max(alignToVals);
 
-  lodash_1$1.forEach(["u", "d"], function(vert) {
-    lodash_1$1.forEach(["l", "r"], function(horiz) {
+  lodash_1.forEach(["u", "d"], function(vert) {
+    lodash_1.forEach(["l", "r"], function(horiz) {
       var alignment = vert + horiz,
         xs = xss[alignment],
         delta;
       if (xs === alignTo) return;
 
-      var xsVals = lodash_1$1.values(xs);
-      delta = horiz === "l" ? alignToMin - lodash_1$1.min(xsVals) : alignToMax - lodash_1$1.max(xsVals);
+      var xsVals = lodash_1.values(xs);
+      delta = horiz === "l" ? alignToMin - lodash_1.min(xsVals) : alignToMax - lodash_1.max(xsVals);
 
       if (delta) {
-        xss[alignment] = lodash_1$1.mapValues(xs, function(x) { return x + delta; });
+        xss[alignment] = lodash_1.mapValues(xs, function(x) { return x + delta; });
       }
     });
   });
 }
 
 function balance(xss, align) {
-  return lodash_1$1.mapValues(xss.ul, function(ignore, v) {
+  return lodash_1.mapValues(xss.ul, function(ignore, v) {
     if (align) {
       return xss[align.toLowerCase()][v];
     } else {
-      var xs = lodash_1$1.sortBy(lodash_1$1.map(xss, v));
+      var xs = lodash_1.sortBy(lodash_1.map(xss, v));
       return (xs[1] + xs[2]) / 2;
     }
   });
 }
 
-function positionX(g) {
-  var layering = util.buildLayerMatrix(g);
-  var conflicts = lodash_1$1.merge(
+function positionX$1(g) {
+  var layering = util$1.buildLayerMatrix(g);
+  var conflicts = lodash_1.merge(
     findType1Conflicts(g, layering),
     findType2Conflicts(g, layering));
 
   var xss = {};
   var adjustedLayering;
-  lodash_1$1.forEach(["u", "d"], function(vert) {
-    adjustedLayering = vert === "u" ? layering : lodash_1$1.values(layering).reverse();
-    lodash_1$1.forEach(["l", "r"], function(horiz) {
+  lodash_1.forEach(["u", "d"], function(vert) {
+    adjustedLayering = vert === "u" ? layering : lodash_1.values(layering).reverse();
+    lodash_1.forEach(["l", "r"], function(horiz) {
       if (horiz === "r") {
-        adjustedLayering = lodash_1$1.map(adjustedLayering, function(inner) {
-          return lodash_1$1.values(inner).reverse();
+        adjustedLayering = lodash_1.map(adjustedLayering, function(inner) {
+          return lodash_1.values(inner).reverse();
         });
       }
 
@@ -9931,7 +9966,7 @@ function positionX(g) {
       var xs = horizontalCompaction(g, adjustedLayering,
         align.root, align.align, horiz === "r");
       if (horiz === "r") {
-        xs = lodash_1$1.mapValues(xs, function(x) { return -x; });
+        xs = lodash_1.mapValues(xs, function(x) { return -x; });
       }
       xss[vert + horiz] = xs;
     });
@@ -9950,7 +9985,7 @@ function sep(nodeSep, edgeSep, reverseSep) {
     var delta;
 
     sum += vLabel.width / 2;
-    if (lodash_1$1.has(vLabel, "labelpos")) {
+    if (lodash_1.has(vLabel, "labelpos")) {
       switch (vLabel.labelpos.toLowerCase()) {
       case "l": delta = -vLabel.width / 2; break;
       case "r": delta = vLabel.width / 2; break;
@@ -9965,7 +10000,7 @@ function sep(nodeSep, edgeSep, reverseSep) {
     sum += (wLabel.dummy ? edgeSep : nodeSep) / 2;
 
     sum += wLabel.width / 2;
-    if (lodash_1$1.has(wLabel, "labelpos")) {
+    if (lodash_1.has(wLabel, "labelpos")) {
       switch (wLabel.labelpos.toLowerCase()) {
       case "l": delta = wLabel.width / 2; break;
       case "r": delta = -wLabel.width / 2; break;
@@ -9984,47 +10019,47 @@ function width(g, v) {
   return g.node(v).width;
 }
 
-var positionX$1 = bk.positionX;
+var positionX = bk.positionX;
 
 var position_1 = position;
 
 function position(g) {
-  g = util.asNonCompoundGraph(g);
+  g = util$1.asNonCompoundGraph(g);
 
   positionY(g);
-  lodash_1$1.forEach(positionX$1(g), function(x, v) {
+  lodash_1.forEach(positionX(g), function(x, v) {
     g.node(v).x = x;
   });
 }
 
 function positionY(g) {
-  var layering = util.buildLayerMatrix(g);
+  var layering = util$1.buildLayerMatrix(g);
   var rankSep = g.graph().ranksep;
   var prevY = 0;
-  lodash_1$1.forEach(layering, function(layer) {
-    var maxHeight = lodash_1$1.max(lodash_1$1.map(layer, function(v) { return g.node(v).height; }));
-    lodash_1$1.forEach(layer, function(v) {
+  lodash_1.forEach(layering, function(layer) {
+    var maxHeight = lodash_1.max(lodash_1.map(layer, function(v) { return g.node(v).height; }));
+    lodash_1.forEach(layer, function(v) {
       g.node(v).y = prevY + maxHeight / 2;
     });
     prevY += maxHeight + rankSep;
   });
 }
 
-var normalizeRanks$1 = util.normalizeRanks;
+var normalizeRanks = util$1.normalizeRanks;
 
-var removeEmptyRanks$1 = util.removeEmptyRanks;
-
-
+var removeEmptyRanks = util$1.removeEmptyRanks;
 
 
 
 
-var Graph$7 = graphlib_1.Graph;
+
+
+var Graph$1 = graphlib_1.Graph;
 
 var layout_1 = layout;
 
 function layout(g, opts) {
-  var time = opts && opts.debugTiming ? util.time : util.notime;
+  var time = opts && opts.debugTiming ? util$1.time : util$1.notime;
   time("layout", function() {
     var layoutGraph = 
       time("  buildLayoutGraph", function() { return buildLayoutGraph(g); });
@@ -10038,11 +10073,11 @@ function runLayout(g, time) {
   time("    removeSelfEdges",        function() { removeSelfEdges(g); });
   time("    acyclic",                function() { acyclic.run(g); });
   time("    nestingGraph.run",       function() { nestingGraph.run(g); });
-  time("    rank",                   function() { rank_1(util.asNonCompoundGraph(g)); });
+  time("    rank",                   function() { rank_1(util$1.asNonCompoundGraph(g)); });
   time("    injectEdgeLabelProxies", function() { injectEdgeLabelProxies(g); });
-  time("    removeEmptyRanks",       function() { removeEmptyRanks$1(g); });
+  time("    removeEmptyRanks",       function() { removeEmptyRanks(g); });
   time("    nestingGraph.cleanup",   function() { nestingGraph.cleanup(g); });
-  time("    normalizeRanks",         function() { normalizeRanks$1(g); });
+  time("    normalizeRanks",         function() { normalizeRanks(g); });
   time("    assignRankMinMax",       function() { assignRankMinMax(g); });
   time("    removeEdgeLabelProxies", function() { removeEdgeLabelProxies(g); });
   time("    normalize.run",          function() { normalize.run(g); });
@@ -10070,7 +10105,7 @@ function runLayout(g, time) {
  * attributes can influence layout.
  */
 function updateInputGraph(inputGraph, layoutGraph) {
-  lodash_1$1.forEach(inputGraph.nodes(), function(v) {
+  lodash_1.forEach(inputGraph.nodes(), function(v) {
     var inputLabel = inputGraph.node(v);
     var layoutLabel = layoutGraph.node(v);
 
@@ -10085,12 +10120,12 @@ function updateInputGraph(inputGraph, layoutGraph) {
     }
   });
 
-  lodash_1$1.forEach(inputGraph.edges(), function(e) {
+  lodash_1.forEach(inputGraph.edges(), function(e) {
     var inputLabel = inputGraph.edge(e);
     var layoutLabel = layoutGraph.edge(e);
 
     inputLabel.points = layoutLabel.points;
-    if (lodash_1$1.has(layoutLabel, "x")) {
+    if (lodash_1.has(layoutLabel, "x")) {
       inputLabel.x = layoutLabel.x;
       inputLabel.y = layoutLabel.y;
     }
@@ -10119,26 +10154,26 @@ var edgeAttrs = ["labelpos"];
  * attributes can influence layout.
  */
 function buildLayoutGraph(inputGraph) {
-  var g = new Graph$7({ multigraph: true, compound: true });
+  var g = new Graph$1({ multigraph: true, compound: true });
   var graph = canonicalize(inputGraph.graph());
 
-  g.setGraph(lodash_1$1.merge({},
+  g.setGraph(lodash_1.merge({},
     graphDefaults,
     selectNumberAttrs(graph, graphNumAttrs),
-    lodash_1$1.pick(graph, graphAttrs)));
+    lodash_1.pick(graph, graphAttrs)));
 
-  lodash_1$1.forEach(inputGraph.nodes(), function(v) {
+  lodash_1.forEach(inputGraph.nodes(), function(v) {
     var node = canonicalize(inputGraph.node(v));
-    g.setNode(v, lodash_1$1.defaults(selectNumberAttrs(node, nodeNumAttrs), nodeDefaults));
+    g.setNode(v, lodash_1.defaults(selectNumberAttrs(node, nodeNumAttrs), nodeDefaults));
     g.setParent(v, inputGraph.parent(v));
   });
 
-  lodash_1$1.forEach(inputGraph.edges(), function(e) {
+  lodash_1.forEach(inputGraph.edges(), function(e) {
     var edge = canonicalize(inputGraph.edge(e));
-    g.setEdge(e, lodash_1$1.merge({},
+    g.setEdge(e, lodash_1.merge({},
       edgeDefaults,
       selectNumberAttrs(edge, edgeNumAttrs),
-      lodash_1$1.pick(edge, edgeAttrs)));
+      lodash_1.pick(edge, edgeAttrs)));
   });
 
   return g;
@@ -10155,7 +10190,7 @@ function buildLayoutGraph(inputGraph) {
 function makeSpaceForEdgeLabels(g) {
   var graph = g.graph();
   graph.ranksep /= 2;
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
     edge.minlen *= 2;
     if (edge.labelpos.toLowerCase() !== "c") {
@@ -10175,32 +10210,32 @@ function makeSpaceForEdgeLabels(g) {
  * label's position.
  */
 function injectEdgeLabelProxies(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
     if (edge.width && edge.height) {
       var v = g.node(e.v);
       var w = g.node(e.w);
       var label = { rank: (w.rank - v.rank) / 2 + v.rank, e: e };
-      util.addDummyNode(g, "edge-proxy", label, "_ep");
+      util$1.addDummyNode(g, "edge-proxy", label, "_ep");
     }
   });
 }
 
 function assignRankMinMax(g) {
   var maxRank = 0;
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
     if (node.borderTop) {
       node.minRank = g.node(node.borderTop).rank;
       node.maxRank = g.node(node.borderBottom).rank;
-      maxRank = lodash_1$1.max(maxRank, node.maxRank);
+      maxRank = lodash_1.max(maxRank, node.maxRank);
     }
   });
   g.graph().maxRank = maxRank;
 }
 
 function removeEdgeLabelProxies(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
     if (node.dummy === "edge-proxy") {
       g.edge(node.e).labelRank = node.rank;
@@ -10229,10 +10264,10 @@ function translateGraph(g) {
     maxY = Math.max(maxY, y + h / 2);
   }
 
-  lodash_1$1.forEach(g.nodes(), function(v) { getExtremes(g.node(v)); });
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.nodes(), function(v) { getExtremes(g.node(v)); });
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
-    if (lodash_1$1.has(edge, "x")) {
+    if (lodash_1.has(edge, "x")) {
       getExtremes(edge);
     }
   });
@@ -10240,20 +10275,20 @@ function translateGraph(g) {
   minX -= marginX;
   minY -= marginY;
 
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
     node.x -= minX;
     node.y -= minY;
   });
 
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
-    lodash_1$1.forEach(edge.points, function(p) {
+    lodash_1.forEach(edge.points, function(p) {
       p.x -= minX;
       p.y -= minY;
     });
-    if (lodash_1$1.has(edge, "x")) { edge.x -= minX; }
-    if (lodash_1$1.has(edge, "y")) { edge.y -= minY; }
+    if (lodash_1.has(edge, "x")) { edge.x -= minX; }
+    if (lodash_1.has(edge, "y")) { edge.y -= minY; }
   });
 
   graphLabel.width = maxX - minX + marginX;
@@ -10261,7 +10296,7 @@ function translateGraph(g) {
 }
 
 function assignNodeIntersects(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
     var nodeV = g.node(e.v);
     var nodeW = g.node(e.w);
@@ -10274,15 +10309,15 @@ function assignNodeIntersects(g) {
       p1 = edge.points[0];
       p2 = edge.points[edge.points.length - 1];
     }
-    edge.points.unshift(util.intersectRect(nodeV, p1));
-    edge.points.push(util.intersectRect(nodeW, p2));
+    edge.points.unshift(util$1.intersectRect(nodeV, p1));
+    edge.points.push(util$1.intersectRect(nodeW, p2));
   });
 }
 
 function fixupEdgeLabelCoords(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
-    if (lodash_1$1.has(edge, "x")) {
+    if (lodash_1.has(edge, "x")) {
       if (edge.labelpos === "l" || edge.labelpos === "r") {
         edge.width -= edge.labeloffset;
       }
@@ -10295,7 +10330,7 @@ function fixupEdgeLabelCoords(g) {
 }
 
 function reversePointsForReversedEdges(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     var edge = g.edge(e);
     if (edge.reversed) {
       edge.points.reverse();
@@ -10304,13 +10339,13 @@ function reversePointsForReversedEdges(g) {
 }
 
 function removeBorderNodes(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     if (g.children(v).length) {
       var node = g.node(v);
       var t = g.node(node.borderTop);
       var b = g.node(node.borderBottom);
-      var l = g.node(lodash_1$1.last(node.borderLeft));
-      var r = g.node(lodash_1$1.last(node.borderRight));
+      var l = g.node(lodash_1.last(node.borderLeft));
+      var r = g.node(lodash_1.last(node.borderRight));
 
       node.width = Math.abs(r.x - l.x);
       node.height = Math.abs(b.y - t.y);
@@ -10319,7 +10354,7 @@ function removeBorderNodes(g) {
     }
   });
 
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     if (g.node(v).dummy === "border") {
       g.removeNode(v);
     }
@@ -10327,7 +10362,7 @@ function removeBorderNodes(g) {
 }
 
 function removeSelfEdges(g) {
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     if (e.v === e.w) {
       var node = g.node(e.v);
       if (!node.selfEdges) {
@@ -10340,14 +10375,14 @@ function removeSelfEdges(g) {
 }
 
 function insertSelfEdges(g) {
-  var layers = util.buildLayerMatrix(g);
-  lodash_1$1.forEach(layers, function(layer) {
+  var layers = util$1.buildLayerMatrix(g);
+  lodash_1.forEach(layers, function(layer) {
     var orderShift = 0;
-    lodash_1$1.forEach(layer, function(v, i) {
+    lodash_1.forEach(layer, function(v, i) {
       var node = g.node(v);
       node.order = i + orderShift;
-      lodash_1$1.forEach(node.selfEdges, function(selfEdge) {
-        util.addDummyNode(g, "selfedge", {
+      lodash_1.forEach(node.selfEdges, function(selfEdge) {
+        util$1.addDummyNode(g, "selfedge", {
           width: selfEdge.label.width,
           height: selfEdge.label.height,
           rank: node.rank,
@@ -10362,7 +10397,7 @@ function insertSelfEdges(g) {
 }
 
 function positionSelfEdges(g) {
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     var node = g.node(v);
     if (node.dummy === "selfedge") {
       var selfNode = g.node(node.e.v);
@@ -10386,18 +10421,18 @@ function positionSelfEdges(g) {
 }
 
 function selectNumberAttrs(obj, attrs) {
-  return lodash_1$1.mapValues(lodash_1$1.pick(obj, attrs), Number);
+  return lodash_1.mapValues(lodash_1.pick(obj, attrs), Number);
 }
 
 function canonicalize(attrs) {
   var newAttrs = {};
-  lodash_1$1.forEach(attrs, function(v, k) {
+  lodash_1.forEach(attrs, function(v, k) {
     newAttrs[k.toLowerCase()] = v;
   });
   return newAttrs;
 }
 
-var Graph$8 = graphlib_1.Graph;
+var Graph = graphlib_1.Graph;
 
 var debug = {
   debugOrdering: debugOrdering
@@ -10405,23 +10440,23 @@ var debug = {
 
 /* istanbul ignore next */
 function debugOrdering(g) {
-  var layerMatrix = util.buildLayerMatrix(g);
+  var layerMatrix = util$1.buildLayerMatrix(g);
 
-  var h = new Graph$8({ compound: true, multigraph: true }).setGraph({});
+  var h = new Graph({ compound: true, multigraph: true }).setGraph({});
 
-  lodash_1$1.forEach(g.nodes(), function(v) {
+  lodash_1.forEach(g.nodes(), function(v) {
     h.setNode(v, { label: v });
     h.setParent(v, "layer" + g.node(v).rank);
   });
 
-  lodash_1$1.forEach(g.edges(), function(e) {
+  lodash_1.forEach(g.edges(), function(e) {
     h.setEdge(e.v, e.w, {}, e.name);
   });
 
-  lodash_1$1.forEach(layerMatrix, function(layer, i) {
+  lodash_1.forEach(layerMatrix, function(layer, i) {
     var layerV = "layer" + i;
     h.setNode(layerV, { rank: "same" });
-    lodash_1$1.reduce(layer, function(u, v) {
+    lodash_1.reduce(layer, function(u, v) {
       h.setEdge(u, v, { style: "invis" });
       return v;
     });
@@ -10430,7 +10465,7 @@ function debugOrdering(g) {
   return h;
 }
 
-var version$1 = "0.8.5";
+var version = "0.8.5";
 
 /*
 Copyright (c) 2012-2014 Chris Pettitt
@@ -10460,10 +10495,10 @@ var dagre = {
   layout: layout_1,
   debug: debug,
   util: {
-    time: util.time,
-    notime: util.notime
+    time: util$1.time,
+    notime: util$1.notime
   },
-  version: version$1
+  version: version
 };
 
-export default dagre;
+export { dagre as default };
